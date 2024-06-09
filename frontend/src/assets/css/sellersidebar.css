@@ -1,0 +1,90 @@
+.sidebar_sec .twolinks button.sidebarbtn {
+    display: block;
+    color: #000;
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+    border: 0;
+}
+.john-dow-all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar_sec .twolinks button.sidebarbtn:not(:last-child) {
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.sidebar_sec input#uploadfile {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.sidebar_sec {
+    padding: 1rem 3rem;
+    height: 90%;
+    border-radius: 15px;
+    background: #f2f2f2;
+}
+.sidebar_sec .twolinks button.sidebarbtn {
+    display: block;
+    color: #000;
+    font-size: 16px;
+    padding: .5rem 0;
+}
+.sidebar_sec .twolinks button.sidebarbtn i {
+    font-size: 22px;
+    margin-right: 8px;
+}
+.sidebar_sec .john-dow-all .john-img {
+    position: relative;
+}
+.sidebar_sec .john-dow-all .john-img span.addimageicon {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 11px;
+    right: 5px;
+    background: #9bcd57;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+}
+div#notificationmodal .modal-dialog {
+    max-width: 800px;
+}
+div#notificationmodal .modal-content {
+    width: 800px;
+    position: relative;
+    padding: 0;
+}
+div#notificationmodal .modal-dialog h3 {
+    color: #fff;
+    text-align: center;
+}
+div#notificationmodal .modal-dialog  button.close {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background: #9bcd57;
+    border-radius: 50%;
+    padding: 4px 8px;
+    opacity: 1;
+}
+@media(max-width:1440px){
+    .sidebar_sec{
+        padding: 1rem 2rem;
+        height: auto;
+    }
+    .john-dow-all .john-text h3 {
+        font-size: 22px;
+        margin-top: 1rem;
+    }
+    .sidebar_sec .twolinks button.sidebarbtn{
+        font-size: 14px;
+    }
+}

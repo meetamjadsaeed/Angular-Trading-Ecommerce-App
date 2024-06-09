@@ -1,0 +1,46 @@
+.notication_img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.notification_content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    padding: 1rem 0;
+}
+.notification_content:not(:last-child){
+    border-bottom: 1px solid;
+}
+.notication_img {
+    width: 165px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.notication_img p {
+    font-family: "GTWalsheimPro-Medium";
+    margin-bottom: 0;
+}
+.notification_para p {
+    font-family: "GTWalsheimPro-Regular";
+    margin-bottom: 0;
+    font-size: 16px;
+    padding-right: 4rem;
+}
+.notification_para span {
+    font-size: 12px;
+    font-family: "GTWalsheimPro-Regular";
+}
+.notification_content.active:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background: #9BCD57;
+    right: 20px;
+    top: 40%;
+    border-radius: 50%;
+}
