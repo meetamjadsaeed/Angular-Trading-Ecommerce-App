@@ -1,0 +1,23 @@
+<section class="information">
+  <div class="container">
+    <div class="head pb-5">
+      <h2 class="font-50 fw-700 text-center">Delivery Information</h2>
+    </div>
+    <div class="track-your-order">
+      <div class="inputField">
+        <!-- <input type="text" class="effect-9" placeholder="Write Your Tracking Number" [formControl]="trackCode" (keydown.enter)="onSubmit()"> -->
+      </div>
+      <div class="steps">
+        <div *ngIf="spinLoad" class="loader-container">
+          <!-- <mat-progress-spinner mode="indeterminate" diameter="80"></mat-progress-spinner> -->
+        </div>
+        <ul class="tracking" *ngIf="!spinLoad">
+          <!-- <li><i class="fa" [ngClass]="trackResponse?.waiting_for_driver_assignment ? 'fa-check' : 'fa-circle'"></i> Waiting for Driver Assignment</li> -->
+          <!-- <li><i class="fa" [ngClass]="trackResponse?.order_picked_up_from_location ? 'fa-check' : 'fa-circle'"></i> Order Picked Up from location</li> -->
+          <!-- <li><i class="fa" [ngClass]="trackResponse?.order_on_way ? 'fa-check' : 'fa-circle'"></i> Order On Way</li> -->
+          <!-- <li><i class="fa" [ngClass]="trackResponse?.delivered ? 'fa-check' : 'fa-circle'"></i> Delivered</li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

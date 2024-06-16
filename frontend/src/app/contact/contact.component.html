@@ -1,0 +1,84 @@
+<!-- <app-header></app-header> -->
+<section class="Conversationform">
+  <div class="container">
+    <div class="heading">
+      <h1>Let’s Start a Conversation</h1>
+      <p>
+        Browse our collection of recipes to help inspire healthy cooking in the week. Filter by dietary preference and
+        add your favourite meals to your weekly meal planning diary to help with grocery shopping and organisation in
+        the week.
+      </p>
+    </div>
+    <!-- <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"> -->
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Your name*</label>
+            <input type="text" class="form-control" placeholder="Your Name" formControlName="name" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Contact email*</label>
+            <input type="email" class="form-control" placeholder="you@example.com" formControlName="email" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Phone Number*</label>
+            <input type="text" class="form-control" placeholder="Phone Number" formControlName="number" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Subject*</label>
+            <input type="text" class="form-control" placeholder="Subject" formControlName="subject" />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Your message*</label>
+            <textarea class="form-control" placeholder="Type your message…" formControlName="message"></textarea>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              By submitting this form you agree to our terms and conditions and our Privacy Policy which explains how we
+              may collect, use and disclose your personal information including to third parties.
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <button type="submit" [disabled]="loading">{{ loading ? 'Loading..' : 'Submit' }}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="infoSec text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let info of companyInfo$ | async">
+        <div class="info-box">
+          <div class="img-box">
+            <figure>
+              <img [src]="info.image" alt="" />
+            </figure>
+          </div>
+          <div class="contentDv">
+            <h4>{{ info.title }}</h4>
+            <p>{{ info.description }}</p>
+            <a [href]="info.link">{{ info.linkText }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <app-footer></app-footer> -->

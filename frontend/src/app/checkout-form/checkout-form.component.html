@@ -1,0 +1,18 @@
+<!-- <form [formGroup]="form" (ngSubmit)="handleSubmit($event)"> -->
+<form (ngSubmit)="handleSubmit($event)">
+  <div id="card-element" (stripeElementChange)="onChange($event)"></div>
+  <br />
+  <div class="payment-cards">
+    <div class="form-check form-check-inline" *ngFor="let card of [1, 2, 3, 4, 5]">
+      <input class="form-check-input" type="radio" name="exampleRadios" [id]="'inlineradio' + card"
+        [value]="'option' + card" />
+    </div>
+  </div>
+  <ul class="list-inline">
+    <li>
+      <button type="submit" class="default-btn next-step btn" [disabled]="payButton">
+        Continue to next step
+      </button>
+    </li>
+  </ul>
+</form>

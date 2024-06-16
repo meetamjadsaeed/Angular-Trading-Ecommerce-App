@@ -1,13 +1,117 @@
-<header class="header">
-  <img class="header__logo" src="">
-  @if (isAuthorized$ | async) {
-    <nav class="header__navigation">
-      <ul class="header__nav-list">
-        <li class="header__nav-item">
-          <a [routerLink]="['/']" routerLinkActive="nav-link_active" class="nav-link">{{ "HEADER.NAVIGATION.HOME" | translate }}</a>
-        </li>
-      </ul>
-    </nav>
-    <button (click)="logout()">Logout</button>
-  }
-</header>
+<div class="header-blue">
+  <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+    <div class="container">
+      <a class="navbar-brand navbar-left" [routerLink]="['/']">
+        <!-- <img width="200" [src]="(CompanyInfoRedux$ | async)?.web_logo" class="logo-width" alt="" /> -->
+      </a>
+
+      <button class="navbar-toggler" type="button" (click)="toggleCollapse()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]="{ show: collapse }" id="navbarNavDropdown">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item" role="presentation">
+            <!-- <a [routerLink]="['/']" [ngClass]="{'active-nav active': window.location.href.split('/')[3] === ''}" -->
+            <a [routerLink]="['/']" [ngClass]="{'active-nav active': loading}" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20.5" height="23.332" viewBox="0 0 25.5 28.332">
+                <g id="Group_4116" data-name="Group 4116" transform="translate(-517.7 -51.668)">
+                  <g id="bx-home-alt" transform="translate(513.196 48.668)">
+                    <path id="Path_84" data-name="Path 84"
+                      d="M11.755,21.617a2.835,2.835,0,0,1,2.833-2.833h5.666a2.835,2.835,0,0,1,2.833,2.833V28.7h4.252l0-12.163L17.421,6.621,7.5,16.537V28.7h4.25Z"
+                      transform="translate(-0.167 -0.201)" fill="none" />
+                    <path id="Path_85" data-name="Path 85" d="M15,22.5h5.666v7.083H15Z"
+                      transform="translate(-0.584 -1.084)" fill="none" />
+                    <path id="Path_86" data-name="Path 86"
+                      d="M7.338,31.332H27.171A2.835,2.835,0,0,0,30,28.5V15.749a1.413,1.413,0,0,0-.416-1L18.255,3.416a1.415,1.415,0,0,0-2,0L4.92,14.748a1.413,1.413,0,0,0-.416,1V28.5a2.835,2.835,0,0,0,2.833,2.833ZM14.421,28.5V21.416h5.666V28.5ZM7.338,16.336,17.254,6.42l9.916,9.916V28.5H22.92V21.416a2.835,2.835,0,0,0-2.833-2.833H14.42a2.835,2.835,0,0,0-2.833,2.833V28.5H7.337V16.336Z"
+                      transform="translate(0)" fill="#8dc63f" />
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <!-- <a [routerLink]="['/Hotdeals']"
+              [ngClass]="{'nav-link active': window.location.href.split('/')[3] === 'Hotdeals'}" class="nav-link"> -->
+            <a [routerLink]="['/Hotdeals']" [ngClass]="{'nav-link active': loading}" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16.806" height="25.335" viewBox="0 0 18.806 27.335">
+                <g id="Group_4115" data-name="Group 4115" transform="translate(1 2.061)">
+                  <path id="Icon_ionic-ios-flame" data-name="Icon ionic-ios-flame"
+                    d="M14.183,3.375c1.692,7.854-6.366,7.7-6.308,15.6.047,6.477,6.909,8.671,8.432,8.671a8.906,8.906,0,0,0,8.35-8.671C25.071,12.769,19.889,6.841,14.183,3.375Zm4.335,20.7a2.31,2.31,0,0,1-4.458.006,3.956,3.956,0,0,1-.14-1.021c0-2.392,2.369-5.152,2.369-5.152s2.357,2.76,2.357,5.152A3.671,3.671,0,0,1,18.518,24.072Z"
+                    transform="translate(-7.875 -3.375)" fill="none" stroke="#d93b00" strokeWidth="2" />
+                </g>
+              </svg>
+              Hot Deals
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <!-- <a [routerLink]="['/allproducts']"
+              [ngClass]="{'nav-link dropdown-toggle active': window.location.href.split('/')[3] === 'allproducts'}" -->
+            <a [routerLink]="['/allproducts']" [ngClass]="{'nav-link dropdown-toggle active': loading}"
+              class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Products <i class="fa fa-angle-down primary"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <a *ngFor="let item of (CategoriesRedux$ | async)" [routerLink]="['/Productspage', item.id]"
+                class="dropdown-item" (click)="setChecked(item.id)">
+                {{ item.name }}
+              </a> -->
+              <!-- <a *ngIf="(userData$ | async)?.role === 'Trader'" class="dropdown-item" [routerLink]="['/Traders']">
+                Traders
+              </a> -->
+            </div>
+          </li>
+          <li class="nav-item" role="presentation">
+            <!-- <a [routerLink]="['/faqs']" [ngClass]="{'nav-link active': window.location.href.split('/')[3] === 'faqs'}"
+              class="nav-link"> -->
+            <a [routerLink]="['/faqs']" [ngClass]="{'nav-link active': loading}" class="nav-link">
+              FAQ's
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <!-- <a [routerLink]="['/Contact']"
+              [ngClass]="{'nav-link active': window.location.href.split('/')[3] === 'Contact'}" class="nav-link"> -->
+            <a [routerLink]="['/Contact']" [ngClass]="{'nav-link active': loading}" class="nav-link">
+              Contact Us
+            </a>
+          </li>
+          <li *ngIf="(isLogin$ | async)" class="nav-item dropdown" role="presentation">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Account
+              <i class="fa fa-angle-down primary"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="['/account']">My Profile</a>
+              <a class="dropdown-item" [routerLink]="['/order']">My Orders</a>
+              <a class="dropdown-item" href="#" (click)="logoutHandler($event)">Logout</a>
+            </div>
+          </li>
+          <li class="nav-item" *ngIf="!(isLogin$ | async)" role="presentation">
+            <a [routerLink]="['/Signin']" class="nav-link">Login</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownCart" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-cart-plus"></i>
+              <span class="badge badge-pill badge-danger">
+                {{ (CartReduxData$ | async)?.length }}
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownCart">
+              <div *ngFor="let cartItem of (CartReduxData$ | async)">
+                <a class="dropdown-item" [routerLink]="['/Product', cartItem?.item_id]">
+                  {{ cartItem?.item_name }}
+                </a>
+              </div>
+              <div *ngIf="(CartReduxData$ | async)?.length === 0">
+                <a class="dropdown-item" href="#">No items in cart</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

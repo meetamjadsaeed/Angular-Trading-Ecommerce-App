@@ -1,0 +1,16 @@
+<!-- src/app/checkout/checkout.component.html -->
+<div class="CHECKOUT_PAGE">
+  <!-- <app-header></app-header> -->
+  <div class="container">
+    <div class="card-stepForm">
+      <!-- <app-step-form [CheckOutData]="checkOutData"></app-step-form> -->
+    </div>
+    <div>
+      <h3>Checkout Summary</h3>
+      <p>Subtotal: {{ subTotal | currency }}</p>
+      <p *ngIf="couponDiscount !== null">Coupon Discount: {{ couponDiscount | currency }}</p>
+      <p>Total: {{ totalAfterDiscount | currency }}</p>
+    </div>
+  </div>
+  <!-- <app-footer></app-footer> -->
+</div>

@@ -1,0 +1,42 @@
+/* src/app/order-summary/order-summary.component.css */
+.OrderSummary .headingg {
+  padding-bottom: 15px;
+}
+
+.order_info .order-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.orderTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.font-25 {
+  font-size: 25px;
+}
+
+.pb-3 {
+  padding-bottom: 15px;
+}

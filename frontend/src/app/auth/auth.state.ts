@@ -11,6 +11,10 @@ import { PATH } from '../models/routes.model';
 const INITIAL_STATE: AuthStateModel = {
   token: null,
   username: null,
+  isLogin: false,
+  users: null,
+  companyInfo: null,
+  categoriesData: null,
 };
 
 @State<AuthStateModel>({

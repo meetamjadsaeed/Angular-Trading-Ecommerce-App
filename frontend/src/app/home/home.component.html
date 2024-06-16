@@ -1,6 +1,89 @@
-<h1>Example heading <span class="badge text-bg-secondary">New</span></h1>
-<h2>Example heading <span class="badge text-bg-secondary">New</span></h2>
-<h3>Example heading <span class="badge text-bg-secondary">New</span></h3>
-<h4>Example heading <span class="badge text-bg-secondary">New</span></h4>
-<h5>Example heading <span class="badge text-bg-secondary">New</span></h5>
-<h6>Example heading <span class="badge text-bg-secondary">New</span></h6>
+<!-- home.component.html -->
+
+<div class="Home_Page_TRD">
+  <!-- <ng-container *ngIf="!loader; else loadingTemplate"> -->
+  <!-- <app-header (setChecked)="handleSelectCategory($event)"></app-header> -->
+
+  <!-- <img src="../../assets/img/img-left.png" class="img-tls" alt="" /> -->
+
+  <section class="Home-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 col-sm-12 col-12">
+          <div class="home-banner fullwidth">
+            <!-- <ngx-slick-carousel class="carousel" [config]="bannerSliderConfig"> -->
+            <!-- <div ngxSlickItem *ngFor="let item of bannerData; let i = index" class="slide" key="{{ i }}"> -->
+            <a href="#">
+              <div class="container">
+                <div class="slide__text row">
+                  <div class="col-md-10">
+                    <div class="d-flex pb-2">
+                      <!-- <h5 class="sub-heading pr-3 fw-500 pt-3 font-30 text-white">{{ item.title }}</h5> -->
+                    </div>
+                    <!-- <h3 class="fw-600 font-60 subtitle text-blue">{{ item.sub_title }}</h3> -->
+                    <!-- <p class="text-white">{{ item.description }}</p> -->
+                    <div class="searchBox">
+                      <!-- <input type="text" placeholder="Search Product" [(ngModel)]="productsSearch" (keydown.enter)="submitSearch($event)" /> -->
+                      <button (click)="submitSearch($event)">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="slide__image">
+                <!-- <img [src]="item.banner_image_url" alt="" class="image-fluid" /> -->
+              </div>
+            </a>
+          </div>
+          <!-- </ngx-slick-carousel> -->
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div *ngFor="let item of HotDeals; let i = index">
+          <!-- <app-products *ngIf="i === 0" [item]="item" [index]="i"></app-products> -->
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </section>
+
+  <div class="container">
+    <div class="row mb-5">
+      <div *ngIf="searchSpinLoad" class="loader-container">
+        <!-- <ngx-spinner bdColor="rgba(255, 255, 255, 0.7)" size="medium" color="#8dc63e"></ngx-spinner> -->
+      </div>
+      <ng-container *ngIf="!searchSpinLoad">
+        <div class="row mb-5">
+          <div class="col-lg-3 col-md-6 pt-2" *ngFor="let item of searchData; let i = index">
+            <!-- <app-products [item]="item" [index]="i"></app-products> -->
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="row pb-4">
+        <div class="col-md-6">
+          <h5 class="sub-heading fw-500 font-20">Top Products</h5>
+        </div>
+      </div>
+      <div class="regular">
+        <!-- <ngx-slick-carousel class="carousel" [config]="regularSliderConfig">
+            <div ngxSlickItem *ngFor="let item of TopProductsRedux; let i = index">
+              <app-cards [item]="item" [index]="i"></app-cards>
+            </div>
+          </ngx-slick-carousel> -->
+      </div>
+    </div>
+
+    <!-- Another Section and Components -->
+
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+
+  <!-- </ng-container> -->
+
+  <!-- <ng-template #loadingTemplate>
+    <app-loader></app-loader>
+  </ng-template> -->
+</div>

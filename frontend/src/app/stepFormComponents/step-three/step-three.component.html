@@ -1,0 +1,92 @@
+<h2 class="font-40 fw-600 text-center pb-5">Confirm Order</h2>
+<div class="row">
+  <div class="col-md-7">
+    <div class="setpper-step-container">
+      <div class="productsummary-info">
+        <div class="topBaR">
+          <div class="headd">
+            <h4 class="font-20 mb-2">Products</h4>
+          </div>
+        </div>
+        <table class="table step3">
+          <thead>
+            <tr></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of CheckOutData?.CartData; let i = index">
+              <th scope="row">
+                <div class="quantity mt-3">{{ i + 1 }}</div>
+              </th>
+              <td>
+                <div class="imgBox">
+                  <figure>
+                    <img [src]="item?.productitem?.thumbnail_url" alt="" class="image-fluid image-width" />
+                  </figure>
+                </div>
+              </td>
+              <td>
+                <div class="name mt-3 pr-4">
+                  <h5>{{ item?.productitem?.name }}</h5>
+                </div>
+              </td>
+              <td>
+                <div class="quantity mt-3 text-center"> Quantity: {{ item?.quantity }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="shipment-Info">
+          <div class="topBaR">
+            <div class="headd">
+              <h4 class="font-20">Shipment Address</h4>
+            </div>
+          </div>
+          <div class="uerInfo">
+            <div class="country info-flex">
+              <div class="property">
+                <h5 class="fw-500">Country:</h5>
+              </div>
+              <div class="value">
+                <h5 class="fw-300">{{ selectedCountry?.name }}</h5>
+              </div>
+            </div>
+            <div class="address info-flex">
+              <div class="property">
+                <h5 class="fw-500">Address:</h5>
+              </div>
+              <div class="value">
+                <h5 class="fw-300">{{ userFormData?.street_address }}</h5>
+              </div>
+            </div>
+            <div class="phone info-flex">
+              <div class="property">
+                <h5 class="fw-500">Phone:</h5>
+              </div>
+              <div class="value">
+                <h5 class="fw-300">{{ userFormData?.phone }}</h5>
+              </div>
+            </div>
+            <div class="state info-flex">
+              <div class="property">
+                <h5 class="fw-500">State:</h5>
+              </div>
+              <div class="value">
+                <h5 class="fw-300">{{ userFormData?.city }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-inline">
+          <li>
+            <button type="button" class="default-btn next-step" (click)="PlaceOrderHandler($event)">
+              {{ loading ? "Loading.." : "Confirm & place order" }}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- <app-order-summary [CheckOutData]="CheckOutData"></app-order-summary> -->
+</div>

@@ -1,0 +1,70 @@
+<div class="HOT_DEALS_PAGE">
+  <!-- Loader logic to be implemented -->
+  <img src="jiggle2" class="img-tls" alt="">
+  <!-- <app-header></app-header> -->
+
+  <section class="banner universal-banner">
+    <div class="container">
+      <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Hot Deals
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <!-- Banner data implementation -->
+      <div *ngIf="bannerData?.length >= 0" class="Banner">
+        <div class="banner-box">
+          <figure>
+            <img [src]="bannerData[0]?.banner_image_url" alt="">
+          </figure>
+        </div>
+        <div class="contentDv">
+          <div class="contentFlex">
+            <p class="font-25">{{ bannerData?.[0]?.sub_title }}</p>
+            <h3 class="fw-600 font-80 line-height-50 subtitle">{{ bannerData?.[0]?.title }}</h3>
+            <p>{{ bannerData?.[0]?.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Slider Start Here -->
+  <div class="container">
+    <div class="row pb-4">
+      <div class="col-md-6">
+        <h5 class="sub-heading fw-600 font-20">Some Best Products</h5>
+      </div>
+    </div>
+    <div class="regular">
+      <!-- Slider implementation goes here -->
+    </div>
+  </div>
+  <!-- Product Slider End Here -->
+
+  <!-- Products Section -->
+  <section class="hotdeals">
+    <div class="container">
+      <div class="row">
+        <!-- Filters implementation -->
+        <div class="col-md-3">
+          <!-- Filters content -->
+        </div>
+        <div class="col-md-9">
+          <!-- TopBar and sorting buttons -->
+          <!-- Products list implementation -->
+          <!-- Pagination implementation -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer implementation -->
+  <!-- <app-footer></app-footer> -->
+</div>

@@ -1,0 +1,34 @@
+<section class="signin ovrflw-frgtpass">
+  <div class="container">
+    <div class="logoDv">
+      <figure>
+        <a routerLink="/"><img src="../../assets/img/trading-logo.png" alt=""></a>
+      </figure>
+    </div>
+    <div class="SigninBox">
+      <div class="head">
+        <h4>Welcome Back to Trading Centre LTD</h4>
+        <h4><strong>Where we provide Best Products</strong></h4>
+      </div>
+      <div class="actionBtn">
+        <p>Forgot Password</p>
+      </div>
+      <form (submit)="forgetPasswordHandler()">
+        <div class="form-group">
+          <!-- <input type="email" id="email" class="form-control" placeholder="Email" [formControl]="email"> -->
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.required">Email is required.</div>
+            <div *ngIf="email.errors?.email">Please enter a valid email address.</div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Loading..' : 'Submit' }}
+        </button>
+      </form>
+      <div class="actionBtn2">
+        <p>By Creating Account you are agree to our <a routerLink="/termcondition">Terms & conditions</a></p>
+        <p><a routerLink="/">Back To Home</a></p>
+      </div>
+    </div>
+  </div>
+</section>

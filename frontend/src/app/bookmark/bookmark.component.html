@@ -1,0 +1,54 @@
+<!-- src/app/bookmark/bookmark.component.html -->
+<app-header></app-header>
+<section class="bookmark">
+  <div class="container">
+    <div class="heading">
+      <h3 class="text-center title font-40 fw-600">Product BookMarks</h3>
+    </div>
+
+    <div class="tableDv">
+      <div *ngIf="spinLoad" class="loader-container">
+        <spinner-circular [size]="'80px'" [color]="'#8dc63e'"></spinner-circular>
+      </div>
+      <table *ngIf="!spinLoad">
+        <thead>
+          <tr class="topbar">
+            <th class="productDetail">PRODUCT NAME</th>
+            <th class="Proprice">UNIT PRICE</th>
+            <th class="addcart">ADD TO CART</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="bookMarkData?.length === 0">
+            <td colspan="3" class="text-center">No Record Found!!</td>
+          </tr>
+          <tr *ngFor="let item of wishlistDataRedux; let index = index">
+            <app-wishlist-table [item]="item" [index]="index" (addToCartHandler)="addToCartHandler($event)"
+              (deleteWishListHandler)="deleteWishListHandler($event)"></app-wishlist-table>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="button-group">
+        <a routerLink="/" class="btn">Continue Shopping</a>
+        <a href="#" class="btn grey" (click)="clearBookmarkHandler($event)">
+          {{ clearLoading ? 'Loading...' : 'Clear Bookmarks' }}
+        </a>
+      </div>
+
+      <div class="pagination-container mt-5">
+        <ng-container *ngIf="pageCount">
+          <react-paginate [previousLabel]="'< previous'" [nextLabel]="'next >'" [breakLabel]="'...'"
+            [pageCount]="pageCount" [marginPagesDisplayed]="2" [pageRangeDisplayed]="3"
+            (onPageChange)="handlePageClick($event)" [containerClassName]="'pagination justify-content-center'"
+            [pageClassName]="'page-item'" [pageLinkClassName]="'page-link'" [previousClassName]="'page-item'"
+            [previousLinkClassName]="'page-link'" [nextClassName]="'page-item'" [nextLinkClassName]="'page-link'"
+            [breakClassName]="'page-item'" [breakLinkClassName]="'page-link'"
+            [activeClassName]="'active'"></react-paginate>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

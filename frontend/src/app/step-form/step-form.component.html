@@ -1,0 +1,30 @@
+<!-- src/app/step-form/step-form.component.html -->
+<div>
+  <mat-vertical-stepper [linear]="false" [selectedIndex]="activeStep">
+    <mat-step *ngFor="let step of steps; let i = index;" [optional]="isStepOptional(i)" [completed]="isStepSkipped(i)">
+      <ng-template matStepLabel>
+        {{ step }}
+      </ng-template>
+      <div *ngIf="activeStep === 0">
+        <!-- StepOne Component (Create StepOne component separately) -->
+        <app-step-one (continue)="StepOneContinue($event)" [userDetails]="userFormData" [loading]="loading"
+          [checkOutData]="CheckOutData"></app-step-one>
+      </div>
+      <div *ngIf="activeStep === 1">
+        <!-- StepTwo Component (Create StepTwo component separately) -->
+        <app-step-two (continue)="StepTwoContinue($event)" [setCardToken]="setCardToken" [checkOutData]="CheckOutData"
+          [cardToken]="cardToken"></app-step-two>
+      </div>
+      <div *ngIf="activeStep === 2">
+        <!-- StepThree Component (Create StepThree component separately) -->
+        <app-step-three [checkOutData]="CheckOutData" [userDetails]="userFormData"
+          (placeOrder)="PlaceOrderHandler($event)" [loading]="loading"></app-step-three>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  <div>
+    <button mat-raised-button color="primary" *ngIf="activeStep !== steps.length - 1"
+      (click)="handleNext()">Next</button>
+    <button mat-button *ngIf="activeStep !== 0" (click)="handleBack()">Back</button>
+  </div>
+</div>

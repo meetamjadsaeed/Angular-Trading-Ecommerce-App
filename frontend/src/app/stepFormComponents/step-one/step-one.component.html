@@ -1,0 +1,99 @@
+<h2 class="font-40 fw-600 text-center pb-5">Shipment Address</h2>
+<div class="row stepOne">
+  <div class="col-md-7">
+    <div class="setpper-step-container">
+      <div class="addressDetail">
+        <div class="head">
+          <h4 class="font-20 fw-600">Enter Your Address Details</h4>
+        </div>
+        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+        <form (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="f_name">First Name</label>
+                <input type="text" id="f_name" formControlName="f_name" class="form-control" />
+                <!-- <div *ngIf="form.controls.f_name.invalid && form.controls.f_name.touched" class="text-danger">
+                  First name field is required
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="l_name">Last Name</label>
+                <input type="text" id="l_name" formControlName="l_name" class="form-control" />
+                <!-- <div *ngIf="form.controls.l_name.invalid && form.controls.l_name.touched" class="text-danger">
+                  Last name field is required
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" formControlName="phone" class="form-control" />
+                <!-- <div *ngIf="form.controls.phone.invalid && form.controls.phone.touched" class="text-danger">
+                  Phone field is required and must be a number
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" class="form-control" />
+                <!-- <div *ngIf="form.controls.email.invalid && form.controls.email.touched" class="text-danger">
+                  Valid email field is required
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="region">Region</label>
+                <select id="region" formControlName="region" class="form-control">
+                  <option *ngFor="let country of countryData$ | async" [value]="country.id">{{ country.name }}</option>
+                </select>
+                <!-- <div *ngIf="form.controls.region.invalid && form.controls.region.touched" class="text-danger">
+                  You must select a region
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="city">Town City</label>
+                <input type="text" id="city" formControlName="city" class="form-control" />
+                <!-- <div *ngIf="form.controls.city.invalid && form.controls.city.touched" class="text-danger">
+                  Town city field is required
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="street_address">Your Address</label>
+                <textarea id="street_address" formControlName="street_address" class="form-control"></textarea>
+                <!-- <div *ngIf="form.controls.street_address.invalid && form.controls.street_address.touched"
+                  class="text-danger">
+                  Address field is required
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" formControlName="save_data_for_future" /> Save your information for future
+                </label>
+              </div>
+            </div>
+          </div>
+          <ul class="list-inline">
+            <li>
+              <button type="submit" class="default-btn next-step" [disabled]="loading">
+                {{ loading ? 'Loading..' : 'Continue to next step' }}
+              </button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <app-order-summary [CheckOutData]="CheckOutData"></app-order-summary> -->
+</div>

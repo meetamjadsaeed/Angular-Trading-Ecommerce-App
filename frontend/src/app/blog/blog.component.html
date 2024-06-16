@@ -1,0 +1,48 @@
+<!-- src/app/blog/blog.component.html -->
+<!-- <app-header></app-header> -->
+
+<div class="LearnSkills">
+  <section class="elearning_blog">
+    <div class="container px-0">
+      <div class="row">
+        <ng-container *ngIf="!loading; else skeleton">
+          <div class="col-lg-4 my-4" *ngFor="let term of vlogs?.data" (click)="navigateToBlogDetail(term.id)">
+            <div class="card-eblogs">
+              <img [src]="term.image" class="w-100 rounded card-eblogs-imgsss" />
+              <div class="crd-inner">
+                <p class="blogs_artcl">{{ term.title }}</p>
+                <p class="website-text" [innerHTML]="term.content.slice(0, 200)"></p>
+                <p class="read_more">Read More</p>
+              </div>
+            </div>
+          </div>
+          <div class="pagination_cont mt-5">
+            <ngb-pagination [collectionSize]="pageCount" [(page)]="currentPage" [maxSize]="5" [pageSize]="10"
+              [rotate]="true" (pageChange)="handlePageClick($event)" [ellipses]="true"
+              [boundaryLinks]="true"></ngb-pagination>
+          </div>
+        </ng-container>
+        <ng-template #skeleton>
+          <div class="col-lg-4 my-4" *ngFor="let _ of [1, 2, 3]">
+            <div class="card-eblogs">
+              <div
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+                <div style="width: 260px; height: 60px;">
+                  <div class="skeleton-loader" style="width: 100%; height: 100%; background-color: #f0f0f0;"></div>
+                </div>
+                <div style="width: 260px; height: 118px; margin-top: 10px;">
+                  <div class="skeleton-loader" style="width: 100%; height: 100%; background-color: #f0f0f0;"></div>
+                </div>
+                <div style="width: 100px; height: 60px; margin-top: 10px;">
+                  <div class="skeleton-loader" style="width: 100%; height: 100%; background-color: #f0f0f0;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- <app-footer></app-footer> -->
