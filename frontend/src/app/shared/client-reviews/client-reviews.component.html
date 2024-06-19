@@ -1,0 +1,79 @@
+<section class="ClientsReviewsSec">
+  <div class="container">
+    <!-- Tabs Start Here -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+          aria-selected="true">Reviews</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="specification-tab" data-toggle="tab" href="#specification" role="tab"
+          aria-controls="specification" aria-selected="false">Specification</a>
+      </li>
+    </ul>
+    <!-- Tabs Start Here -->
+
+    <!-- Tabs Content Start Here -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+        <div class="head">
+          <h4 class="font-25 fw-600">275 Reviews</h4>
+        </div>
+        <div class="mainReview" *ngFor="let review of reviews">
+          <div class="brieflyReview">
+            <div class="img-box">
+              <figure>
+                <img [src]="review.img" alt="" />
+              </figure>
+            </div>
+            <div class="contentDv">
+              <div class="info">
+                <h6 class="name">{{ review.name }}</h6>
+                <div class="spacer">-</div>
+                <h6 class="date">{{ review.date }}</h6>
+              </div>
+              <div class="descrip">
+                <p>{{ review.text }}</p>
+                <div class="rating">
+                  <div class="stars">
+                    <i class="fa fa-star star" *ngFor="let star of [1,2,3]; let i = index"></i>
+                    <i class="fa fa-star-o star" *ngFor="let star of [1,2]; let i = index"></i>
+                    <div class="star-count">
+                      <span>{{ review.rating }}</span>
+                    </div>
+                  </div>
+                  <div class="rply-btn">
+                    <a href="#!">Reply</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="replyDv" *ngIf="review.replies">
+            <div class="brieflyReview" *ngFor="let reply of review.replies">
+              <div class="img-box">
+                <figure>
+                  <img [src]="reply.img" alt="" />
+                </figure>
+              </div>
+              <div class="contentDv">
+                <div class="info">
+                  <h6 class="name">{{ reply.name }}</h6>
+                  <div class="spacer">-</div>
+                  <h6 class="date">{{ reply.date }}</h6>
+                </div>
+                <div class="descrip">
+                  <p>{{ reply.text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="specification" role="tabpanel" aria-labelledby="specification-tab">
+        <!-- Specification content similar to reviews goes here -->
+      </div>
+    </div>
+    <!-- Tabs Content Start Here -->
+  </div>
+</section>

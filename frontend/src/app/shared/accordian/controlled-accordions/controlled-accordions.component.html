@@ -1,0 +1,32 @@
+<!-- <mat-accordion> -->
+<!-- <mat-expansion-panel
+    [expanded]="expanded === item?.name"
+    (opened)="handleChange(item?.name)"
+    (closed)="handleChange('')"
+    class="main-container"
+  > -->
+<!-- <mat-expansion-panel-header class="summary">
+      <mat-checkbox
+        [checked]="cateId.includes(item?.id)"
+        (change)="handleSelectCate(item?.id, $event.checked)"
+      ></mat-checkbox>
+      <mat-panel-title>
+        {{ item?.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header> -->
+
+<div *ngFor="let childItem of item?.childes; let i = index">
+  <!-- <mat-expansion-panel class="child-panel">
+        <mat-expansion-panel-header>
+          <mat-checkbox
+            [checked]="cateId.includes(childItem?.id)"
+            (change)="handleSelectCate(childItem?.id, $event.checked)"
+          ></mat-checkbox>
+          <mat-panel-title>
+            {{ childItem?.name }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel> -->
+</div>
+<!-- </mat-expansion-panel> -->
+<!-- </mat-accordion> -->

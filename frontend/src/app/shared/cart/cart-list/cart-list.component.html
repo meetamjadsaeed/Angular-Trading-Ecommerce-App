@@ -1,0 +1,40 @@
+<tr class="products cart" *ngIf="item">
+  <td class="productDetail">
+    <div class="product-detail">
+      <div class="imgBox">
+        <figure>
+          <img [src]="item?.productitem?.thumbnail_url" alt="" class="image-fluid image-width" />
+        </figure>
+      </div>
+      <div class="name">
+        <p class="font-13">{{ item?.productitem?.name }}</p>
+      </div>
+    </div>
+  </td>
+  <td class="Proprice">
+    <h5 class="font-15">{{ item?.productitem?.unit_price }}</h5>
+  </td>
+  <td class="qty">
+    <div>
+      <button class="btn increment-Decrement mr-2" (click)="handleIncrement(item?.id)"
+        [disabled]="user?.role === 'Trader' || item?.productitem?.current_stock === item?.quantity">
+        +
+      </button>
+      {{ user?.role === 'Trader' ? item?.productitem?.trade_qty : item?.quantity }}
+      <button class="btn increment-Decrement ml-2" (click)="handleDecrement(item?.id)"
+        [disabled]="user?.role === 'Trader'">
+        -
+      </button>
+    </div>
+  </td>
+  <td class="addcart">
+    <div class="ActionBtn">
+      <div class="cartBtn">
+        <p>{{ (item?.quantity * item?.productitem?.unit_price).toFixed(2) }}</p>
+      </div>
+      <div class="deleteBtn" (click)="handleRemoveCartItem(item?.productitem?.id)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+    </div>
+  </td>
+</tr>

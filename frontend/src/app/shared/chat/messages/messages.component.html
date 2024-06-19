@@ -1,0 +1,47 @@
+<div class="col-12 col-lg-7 col-xl-9">
+  <div class="py-2 px-4 border-bottom d-none d-lg-block">
+    <div class="d-flex align-items-center py-1">
+      <div class="position-relative">
+        <!-- <img *ngIf="!currentChat?.user_detail?.image" [src]="imageProoo" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40" /> -->
+        <!-- <img *ngIf="currentChat?.user_detail?.image" [src]="apiType ? currentChat?.user_detail?.profile_url : SellerImageUrl + '/' + currentChat?.user_detail?.image" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40" /> -->
+      </div>
+      <div class="flex-grow-1 pl-3">
+        <strong>{{ currentChat?.user_detail?.f_name }}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="position-relative">
+    <div class="chat-messages p-4">
+      <div *ngIf="currentChat?.messages?.length === 0" class="d-flex justify-content-center">
+        <p>Start chatting with the seller</p>
+      </div>
+      <ng-container *ngFor="let message of currentChat?.messages; let index = index">
+        <!-- <div [ngClass]="{'chat-message-right pb-4': message.userable_type === userType && message.userable_id === currentUser.id, 'chat-message-left pb-4': message.userable_type !== userType || message.userable_id !== currentUser.id}">
+          <div>
+            <img *ngIf="(message.userable_type === userType && message.userable_id === currentUser.id) ? !currentUser?.image : !currentChat?.user_detail?.image" [src]="imageProoo" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40" />
+            <img *ngIf="(message.userable_type === userType && message.userable_id === currentUser.id) ? currentUser?.image : currentChat?.user_detail?.image" [src]="apiType ? currentUser?.profile_url : SellerImageUrl + '/' + (message.userable_type === userType && message.userable_id === currentUser.id ? currentUser?.user_detail?.image : currentChat?.user_detail?.image)" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40" />
+            <div class="text-muted small text-nowrap mt-2">{{ formatAmPm(new Date(message.created_at)) }}</div>
+          </div>
+          <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3" *ngIf="message.userable_type === userType && message.userable_id === currentUser.id">
+            <div class="font-weight-bold mb-1">You</div>
+            {{ message.message }}
+            <div *ngIf="(apiType == null ? message.seen_seller : message.seen_user).length !== 0" class="d-flex justify-content-end font-10 mt-4">Seen by {{ apiType == null ? "Seller" : "Customer" }}</div>
+          </div>
+          <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3" *ngIf="message.userable_type !== userType || message.userable_id !== currentUser.id">
+            <div class="font-weight-bold mb-1">{{ currentChat?.user_detail?.f_name }}</div>
+            {{ message.message }}
+          </div>
+        </div> -->
+      </ng-container>
+      <div #messagesEndRef></div>
+    </div>
+  </div>
+  <div class="flex-grow-0 py-3 px-4 border-top">
+    <div class="input-group">
+      <!-- <input type="text" class="form-control" [(ngModel)]="message" placeholder="Type your message" /> -->
+      <button (click)="sendMessage()" class="btn btn-primary ml-2">
+        Send
+      </button>
+    </div>
+  </div>
+</div>
