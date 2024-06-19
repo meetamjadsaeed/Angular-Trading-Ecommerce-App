@@ -1,0 +1,27 @@
+<div class="sellerproddetail_page addnewproduct_sec">
+  <!-- <app-seller-header></app-seller-header> -->
+  <div class="container-fluid">
+    <div class="sellerproddetail_sec">
+      <div class="seller_heading">
+        <h2>Seller Profile</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- <app-seller-side-bar></app-seller-side-bar> -->
+        </div>
+        <div class="col-md-9"
+          *ngIf="currentProduct && Object.keys(currentProduct).length > 0 && productCategory && Object.keys(productCategory).length > 0">
+          <!-- <app-main-form [currentProduct]="currentProduct"
+                         [currentCategories]="currentCategories"
+                         [currentBrands]="currentBrands"
+                         [currentColors]="currentColors"
+                         [currentAttributes]="currentAttributes"
+                         [selectedCategory]="productCategory"
+                         [selectedSubCategory]="productSubCategory">
+          </app-main-form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-seller-footer></app-seller-footer> -->

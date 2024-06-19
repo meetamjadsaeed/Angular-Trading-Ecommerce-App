@@ -1,0 +1,59 @@
+<!-- <app-seller-header></app-seller-header> -->
+
+<div class="seller_prodinv_page orderdetail_page">
+  <div class="container-fluid">
+    <div class="seller_prodinv_sec">
+      <div>
+        <h2>Seller Profile</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- <app-seller-side-bar></app-seller-side-bar> -->
+        </div>
+        <div *ngIf="order && Object.keys(order).length > 0" class="col-md-9">
+          <div class="totalcard">
+            <div class="form-head">
+              <div class="seller_head">
+                <div class="d-flex justify-content-between">
+                  <h3>Orders ID #{{ order.id }}</h3>
+                  <!-- <button [ngClass]="getStatusClass(order.status)">{{ order.status }}</button> -->
+                </div>
+              </div>
+            </div>
+            <div class="order-table-wrapper table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let detail of order.details" class="row2">
+                    <td class="pname">
+                      <div class="prodinv_phone">
+                        <img [src]="'${ImageUrl}/thumbnail/' + detail.product.thumbnail" class="img-fluid" alt="" />
+                      </div>
+                      <div>
+                        <p>Product Title:</p>
+                        <p>Order Type:</p>
+                        <p>Quantity:</p>
+                        <p>Order Status:</p>
+                      </div>
+                    </td>
+                    <td class="orderproddetail">
+                      <p>
+                        {{ detail.product.name.substring(0, 60) + '...' }}
+                        <!-- <a [routerLink]="'/seller/productdetail/' + detail.product.id">
+                          <i class="fa fa-eye text-dark"></i>
+                        </a> -->
+                      </p>
+                      <p>{{ detail.product.is_trade === 1 ? 'Trade Order' : 'Regular Order' }}</p>
+                      <p class="qtnty_value">{{ detail.qty }}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-seller-footer></app-seller-footer> -->

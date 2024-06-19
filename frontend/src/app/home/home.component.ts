@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
@@ -55,16 +56,16 @@ export class HomeComponent implements OnInit {
   }
 
   getHomeBanner() {
-    this.http.get<any>('/api/home/banner').subscribe(
-      (res) => {
-        this.bannerData = res?.data.filter(
-          (item) => item.banner_type === 'main_banner'
-        );
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    // this.http.get<any>('/api/home/banner').subscribe(
+    //   (res) => {
+    //     this.bannerData = res?.data.filter(
+    //       (item) => item.banner_type === 'main_banner'
+    //     );
+    //   },
+    //   (err) => {
+    //     console.error(err);
+    //   }
+    // );
   }
 
   submitSearch(event: any) {

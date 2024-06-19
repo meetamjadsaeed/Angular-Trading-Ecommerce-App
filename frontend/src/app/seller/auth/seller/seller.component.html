@@ -1,0 +1,87 @@
+<div class="sellersignup_page">
+  <!-- Header Component -->
+  <!-- <app-header></app-header> -->
+
+  <section class="signup">
+    <div class="container">
+      <div class="signupBox">
+        <h2>Create Account</h2>
+        <!-- <button type="button" [ngClass]="{ 'active': profileTabs === 1 }" (click)="changeTabsFunction(1)">
+          Signup as Customer
+        </button> -->
+        <!-- <button type="button" [ngClass]="{ 'active': profileTabs === 2 }" (click)="changeTabsFunction(2)">
+          Signup as Trader
+        </button>
+        <button type="button" [ngClass]="{ 'active': profileTabs === 3 }" (click)="changeTabsFunction(3)">
+          Signup as Seller
+        </button> -->
+        <div class="content-container">
+          <ng-container *ngIf="profileTabs === 1 || profileTabs === 2">
+            <!-- <app-dynamic-form [id]="profileTabs"></app-dynamic-form> -->
+          </ng-container>
+          <ng-container *ngIf="profileTabs === 3">
+            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="First Name" formControlName="f_name" />
+              <div *ngIf="loginForm.get('f_name').invalid && loginForm.get('f_name').touched" class="error">
+                <div *ngIf="loginForm.get('f_name').errors?.required">First Name is required</div>
+                <div *ngIf="loginForm.get('f_name').errors?.maxlength">
+                  Must be 15 characters or less
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Last Name" formControlName="l_name" />
+              <div *ngIf="loginForm.get('l_name').invalid && loginForm.get('l_name').touched" class="error">
+                <div *ngIf="loginForm.get('l_name').errors?.required">Last Name is required</div>
+                <div *ngIf="loginForm.get('l_name').errors?.maxlength">
+                  Must be 15 characters or less
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+              <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" class="error">
+                <div *ngIf="loginForm.get('email').errors?.required">Email is required</div>
+                <div *ngIf="loginForm.get('email').errors?.email">Invalid email address</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="tel" pattern="[0-9]*" class="form-control" placeholder="Phone Number"
+                formControlName="phone" />
+              <div *ngIf="loginForm.get('phone').invalid && loginForm.get('phone').touched" class="error">
+                <div *ngIf="loginForm.get('phone').errors?.required">Phone number is required</div>
+                <div *ngIf="loginForm.get('phone').errors?.maxlength">
+                  Must be 20 characters or less
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+              <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="error">
+                Password is required
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="cuscheck" class="" placeholder="Password" formControlName="terms" />
+              <label for="cuscheck">
+                By Creating account you agree to our <a href="#">Terms & Conditions</a>
+              </label>
+              <div *ngIf="loginForm.get('terms').invalid && loginForm.get('terms').touched" class="error">
+                <div *ngIf="loginForm.get('terms').errors?.requiredTrue">You must accept the terms and conditions</div>
+              </div>
+            </div>
+            <button type="submit" [disabled]="btnLoading">
+              <span *ngIf="btnLoading">Loading...</span>
+              <span *ngIf="!btnLoading">Create Account</span>
+            </button>
+            <!-- </form> -->
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component -->
+  <!-- <app-footer></app-footer> -->
+</div>

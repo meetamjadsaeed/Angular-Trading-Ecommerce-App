@@ -1,0 +1,41 @@
+<!-- <app-header></app-header> -->
+
+<!-- Faqs Start Here -->
+<section class="Faqs">
+  <div class="container">
+    <div class="head">
+      <h3>FAQs</h3>
+      <h1>Some Useful information</h1>
+    </div>
+    <div class="row">
+      <ng-container *ngIf="spinLoad; else faqsContent">
+        <div class="loader-container">
+          <!-- <ngx-spinner-circular size="80px" [color]="'#8dc63e'"></ngx-spinner-circular> -->
+        </div>
+      </ng-container>
+      <ng-template #faqsContent>
+        <div *ngFor="let item of faqData" class="col-md-6">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" [id]="item.id">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#' + item.question"
+                    aria-expanded="true" [attr.aria-controls]="item.question">
+                    <span>{{ item.question }}</span>
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </button>
+                </h5>
+              </div>
+              <div [id]="item.question" class="collapse show" [attr.aria-labelledby]="item.id" data-parent="#accordion">
+                <div class="card-body">{{ item.answer }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
+<!-- Faqs End Here -->
+
+<!-- <app-footer></app-footer> -->

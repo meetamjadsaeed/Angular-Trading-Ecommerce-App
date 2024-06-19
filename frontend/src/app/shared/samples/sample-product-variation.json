@@ -1,0 +1,28 @@
+variation : [
+  {"type":"AliceBlue-redwine-xl","price":19,"sku":"a-AliceBlue-redwine-xl","qty":"1"},
+  {"type":"AliceBlue-redwine-l","price":19,"sku":"a-AliceBlue-redwine-l","qty":"1"},
+  {"type":"AliceBlue-bluesky-xl","price":19,"sku":"a-AliceBlue-bluesky-xl","qty":"1"},
+  {"type":"AliceBlue-bluesky-l","price":19,"sku":"a-AliceBlue-bluesky-l","qty":"1"},
+  {"type":"Amethyst-redwine-xl","price":19,"sku":"a-Amethyst-redwine-xl","qty":"1"},
+  {"type":"Amethyst-redwine-l","price":19,"sku":"a-Amethyst-redwine-l","qty":"1"},
+  {"type":"Amethyst-bluesky-xl","price":19,"sku":"a-Amethyst-bluesky-xl","qty":"1"},
+  {"type":"Amethyst-bluesky-l","price":19,"sku":"a-Amethyst-bluesky-l","qty":"1"},
+  {"type":"AntiqueWhite-redwine-xl","price":19,"sku":"a-AntiqueWhite-redwine-xl","qty":"1"},
+  {"type":"AntiqueWhite-redwine-l","price":19,"sku":"a-AntiqueWhite-redwine-l","qty":"1"},
+  {"type":"AntiqueWhite-bluesky-xl","price":19,"sku":"a-AntiqueWhite-bluesky-xl","qty":"1"},
+  {"type":"AntiqueWhite-bluesky-l","price":19,"sku":"a-AntiqueWhite-bluesky-l","qty":"1"}
+]
+
+mainOption = ["AntiqueWhite","Amethyst","AliceBlue"];
+
+options = [
+  ["redwine","bluesky"],
+  ["xl","l"]
+]
+
+
+choice_options: [
+  {"name":"choice_4","title":"color","options":["AntiqueWhite","Amethyst","AliceBlue"]},
+  {"name":"choice_4","title":"color","options":["redwine","bluesky"]},
+  {"name":"choice_1","title":"Size","options":["xl","l"]}
+]

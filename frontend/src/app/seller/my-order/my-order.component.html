@@ -1,0 +1,80 @@
+<!-- <app-seller-header></app-seller-header> -->
+
+<div class="seller_prodinv_page myorder_page">
+  <div class="container-fluid">
+    <div class="seller_prodinv_sec">
+      <div>
+        <h2>Seller Profile</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- <app-seller-side-bar></app-seller-side-bar> -->
+        </div>
+        <div class="col-md-9">
+          <div class="totalcard">
+            <div class="form-head">
+              <div class="seller_head">
+                <div class="">
+                  <h3>My Orders</h3>
+                </div>
+                <div class="search_sec">
+                  <div class="searchandsort form-group">
+                    <!-- <input type="search" name="search" [(ngModel)]="searchQuery" placeholder="Search"
+                      class="form-control" /> -->
+                  </div>
+                  <div class="searchandsort form-group">
+                    <!-- <input type="search" name="search" [(ngModel)]="arrangement" placeholder="Sort By   |  Asc/ Desc"
+                      class="form-control" /> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="order-table-wrapper table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr class="row1">
+                    <th class="order-no">Order ID</th>
+                    <th class="order-date">Order Type</th>
+                    <th class="order-status">Qty</th>
+                    <th class="order-total">Amount</th>
+                    <th class="details">Status</th>
+                    <th class="details">ACTION</th>
+                  </tr>
+                  <tr class="row2" *ngFor="let order of orders; let index = index">
+                    <td class="pname">
+                      <input type="checkbox" name="" value="" />
+                      <div class="prodinv_phone">
+                        <img [src]="order.orderImage" class="img-fluid" alt="" />
+                      </div>
+                      ID #{{ order.id }}
+                    </td>
+                    <td class="ordertype">Trade Order</td>
+                    <!-- <td class="pstock">{{ order.details.map(detail => detail.qty).join(', ') }}</td> -->
+                    <!-- <td class="pprice">${{ order.details.map(detail => detail.price).join(', $') }}</td> -->
+                    <td>
+                      <!-- <button [ngClass]="getStatusClass(order.order_status)">{{ order.order_status }}</button> -->
+                    </td>
+                    <td class="actions">
+                      <!-- <div class="seller_actions">
+                        <span (click)="navigateToOrderDetail(order.id)">View Detail</span>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </div> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pagination-container mt-5">
+            <!-- <ngb-pagination previousLabel="<" nextLabel=" >" [pageSize]="pageCount" [collectionSize]="pageCount"
+              (pageChange)="handlePageClick($event)" class="pagination justify-content-center" [maxSize]="5"
+              [rotate]="true" [boundaryLinks]="true" [ellipses]="false" [size]="'sm'">
+            </ngb-pagination> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-seller-footer></app-seller-footer> -->

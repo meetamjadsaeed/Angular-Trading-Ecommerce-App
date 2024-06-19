@@ -1,0 +1,43 @@
+<div class="sellerlogin_page">
+  <!-- Header Component -->
+  <!-- <app-header></app-header> -->
+
+  <section class="signin">
+    <div class="container">
+      <div class="SigninBox">
+        <h2>Login Account</h2>
+        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
+        <div class="form-group">
+          <input type="email" id="email" class="form-control" placeholder="Email" formControlName="email" />
+          <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" class="error">
+            <div *ngIf="loginForm.get('email').errors?.required">Email is required</div>
+            <div *ngIf="loginForm.get('email').errors?.email">Invalid email address</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password" />
+          <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="error">
+            Password is required
+          </div>
+        </div>
+        <div class="remember_dv">
+          <div class="form-group">
+            <input type="checkbox" id="cuscheck" class="" placeholder="Password" formControlName="remember_me" />
+            <label for="cuscheck">Remember Me</label>
+          </div>
+          <div class="forgetbtn">
+            <a href="">Forget Password?</a> <!-- Replace Link with Angular Router Link -->
+          </div>
+        </div>
+        <button type="submit" [disabled]="loading">
+          <span *ngIf="loading">Loading...</span>
+          <span *ngIf="!loading">Login</span>
+        </button>
+        <!-- </form> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component -->
+  <!-- <app-footer></app-footer> -->
+</div>

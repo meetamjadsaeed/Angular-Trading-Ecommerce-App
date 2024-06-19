@@ -1,0 +1,74 @@
+<!-- <app-header></app-header> -->
+
+<section class="bookmark">
+  <div class="container">
+    <div class="heading">
+      <h3 class="text-center title font-40 fw-600">My Orders</h3>
+    </div>
+    <div class="tableDv">
+      <div *ngIf="spinLoad" class="loader-container">
+        <!-- <spinner-circular size="80px" color="#8dc63e"></spinner-circular> -->
+      </div>
+      <table *ngIf="!spinLoad">
+        <thead>
+          <tr class="topbar">
+            <th>OrderNo</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Discount</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of myOrdersData; let index = index" class="products" [key]="item?.id">
+            <td class="Proprice">
+              <h5 class="font-15">{{ item?.id }}</h5>
+            </td>
+            <td class="Proprice">
+              <h5 class="font-15">{{ item?.order_status }}</h5>
+            </td>
+            <td class="Proprice">
+              <h5 class="font-15">{{ item?.order_amount }}</h5>
+            </td>
+            <td class="Proprice">
+              <h5 class="font-15">{{ item?.discount_amount }}</h5>
+            </td>
+            <td class="Proprice">
+              <button class="btn ViewDetails" (click)="viewOrderHandler(item)">
+                View Details
+              </button>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+
+      <div class="pagination-container mt-3">
+        <!-- <ngb-pagination
+          [collectionSize]="pageCount"
+          [(page)]="currentPage"
+          [maxSize]="5"
+          [pageSize]="limit"
+          (pageChange)="handlePageClick($event)"
+          [boundaryLinks]="true"
+          [ellipses]="true"
+          [rotate]="true"
+          [previousLabel]="'< previous'"
+          [nextLabel]="'next >'"
+          [size]="'sm'"
+          [ariaLabelPrevious]="'Previous'"
+          [ariaLabelNext]="'Next'"
+          [ariaLabelFirst]="'First'"
+          [ariaLabelLast]="'Last'"
+          [class.pagination-justify-content-center]="true"
+          [class.page-item]="true"
+          [class.page-link]="true"
+          [class.active]="true"
+        ></ngb-pagination> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Book Mark End Here -->
+
+<!-- <app-footer></app-footer> -->
+<!-- <app-view-order-modal [isOpenModal]="isOpenModal" (setIsOpenModal)="setIsOpenModal($event)" [selectedData]="selectedData" (setSelectedData)="setSelectedData($event)"></app-view-order-modal> -->

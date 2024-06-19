@@ -1,0 +1,87 @@
+<div class="seller_prodinv_page profileinfo_page">
+  <!-- <app-seller-header></app-seller-header> -->
+  <div class="container-fluid">
+    <div class="seller_prodinv_sec">
+      <div>
+        <h2>Seller Profile</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- <app-seller-side-bar></app-seller-side-bar> -->
+        </div>
+        <div class="col-md-9">
+          <div class="totalcard">
+            <div class="form-head">
+              <div class="seller_head">
+                <div class="">
+                  <h3>Personal Info</h3>
+                </div>
+              </div>
+            </div>
+            <!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" formControlName="f_name" class="form-control" id="inputfname"
+                    placeholder="First Name">
+                  <div *ngIf="profileForm.get('f_name')?.invalid && profileForm.get('f_name')?.touched" class="error">
+                    <div *ngIf="profileForm.get('f_name')?.errors?.required">Required</div>
+                    <div *ngIf="profileForm.get('f_name')?.errors?.maxlength">Must be 15 characters or less</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" formControlName="l_name" class="form-control" id="inputlastname"
+                    placeholder="Last Name">
+                  <div *ngIf="profileForm.get('l_name')?.invalid && profileForm.get('l_name')?.touched" class="error">
+                    <div *ngIf="profileForm.get('l_name')?.errors?.required">Required</div>
+                    <div *ngIf="profileForm.get('l_name')?.errors?.maxlength">Must be 15 characters or less</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" formControlName="business_name" class="form-control" id="inputbname"
+                    placeholder="Business Name">
+                  <div *ngIf="profileForm.get('business_name')?.invalid && profileForm.get('business_name')?.touched"
+                    class="error">
+                    <div *ngIf="profileForm.get('business_name')?.errors?.required">Required</div>
+                    <div *ngIf="profileForm.get('business_name')?.errors?.maxlength">Must be 100 characters or less
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" formControlName="email" class="form-control" id="inputemail"
+                    placeholder="Email Address">
+                  <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="error">
+                    <div *ngIf="profileForm.get('email')?.errors?.required">Required</div>
+                    <div *ngIf="profileForm.get('email')?.errors?.email">Invalid email address</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" formControlName="phone" class="form-control" id="inputphone" placeholder="Phone">
+                  <div *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched" class="error">
+                    <div *ngIf="profileForm.get('phone')?.errors?.required">Required</div>
+                    <div *ngIf="profileForm.get('phone')?.errors?.maxlength">Must be 20 characters or less</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="button-group">
+              <button type="submit" class="sellerpbtn" [disabled]="btnLoading">
+                {{ btnLoading ? 'Loading..' : 'Edit' }}
+              </button>
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-seller-footer></app-seller-footer> -->

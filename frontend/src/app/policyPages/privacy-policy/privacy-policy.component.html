@@ -1,0 +1,21 @@
+<!-- <app-header></app-header> -->
+
+<section class="refund">
+  <div class="container">
+    <ng-container *ngIf="spinLoad; else privacyContent">
+      <div class="loader-container">
+        <!-- <ngx-spinner-circular size="80px" [color]="'#8dc63e'"></ngx-spinner-circular> -->
+      </div>
+    </ng-container>
+    <ng-template #privacyContent>
+      <div *ngIf="privacy.type === 'privacy_policy'" class="head pt-5 pb-3">
+        <h3 class="text-black font-30 fw-700">Privacy Policy</h3>
+      </div>
+      <div class="content">
+        <p [innerHTML]="privacy.value"></p>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<!-- <app-footer></app-footer> -->

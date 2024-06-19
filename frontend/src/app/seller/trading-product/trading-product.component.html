@@ -1,0 +1,119 @@
+<div class="seller_prodinv_page">
+  <!-- SellerHeader Component -->
+  <!-- <app-seller-header></app-seller-header> -->
+
+  <div class="container-fluid">
+    <div class="seller_prodinv_sec">
+      <div>
+        <h2>Seller Profile</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- SellerSideBar Component -->
+          <!-- <app-seller-sidebar></app-seller-sidebar> -->
+        </div>
+        <div class="col-md-9">
+          <div class="totalcard">
+            <div class="form-head">
+              <div class="seller_head">
+                <div class="">
+                  <h3>Trading Products</h3>
+                </div>
+                <div class="search_sec">
+                  <div class="searchandsort form-group">
+                    <!-- <input type="search" name="search" [(ngModel)]="searchQuery" placeholder="Search" class="form-control" /> -->
+                  </div>
+                  <div class="searchandsort form-group">
+                    <!-- <input type="search" name="order" [(ngModel)]="arrangement" placeholder="Sort By   |  All" class="form-control" /> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="order-table-wrapper table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr class="row1">
+                    <th class="order-no">Product Name</th>
+                    <th class="order-date">Price</th>
+                    <th class="order-status">Stock</th>
+                    <th class="order-total">Reviews</th>
+                    <th class="details">Status</th>
+                    <th class="details">ACTION</th>
+                  </tr>
+                  <tr *ngFor="let product of products" class="row2">
+                    <td class="pname">
+                      <input type="checkbox" [checked]="checkProductList.includes(product.id)"
+                        (change)="handleSelect(product.id)" />
+                      <div class="prodinv_phone">
+                        <img [src]="'YOUR_API_URL_HERE/thumbnail/' + product.thumbnail" class="img-fluid" alt="" />
+                      </div>
+                      {{ product.name }}
+                    </td>
+                    <td class="pprice"> {{ product.unit_price }}</td>
+                    <td class="pstock"> {{ product.current_stock }}</td>
+                    <td class="pstar">
+                      <i class="fa fa-star"></i> {{ product.review }}
+                    </td>
+                    <td class="">
+                      <!-- <app-status-span [status]="product.status"></app-status-span> -->
+                    </td>
+                    <td class="actions">
+                      <div class="seller_actions">
+                        <!-- <i class="fa fa-star" (click)="navigate('/seller/review/' + product.id + '/1')"></i> -->
+                        <!-- <i class="fa fa-pencil" (click)="navigate('/seller/productdetail/' + product.id)"></i> -->
+                        <i class="fa fa-times" aria-hidden="true" (click)="handleDelete(product.id)"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="prodinv_bottom">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <span>Upload Products in Bulk</span>
+                  <span class="greenbtn" (click)="excelRef.click()">Upload XLS File</span>
+                  <input #excelRef type="file" (change)="handleExcelInputChange($event)" id="uploadfile"
+                    style="display: none;" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-right">
+                  <!-- <span class="greenbtn" (click)="navigate('/seller/addnewproduct?is_trade=1')">Add New Product</span> -->
+                  <span class="deltebtn" [class.disabled]="checkProductList.length === 0"
+                    (click)="handleBulkDelete()">Delete Product</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pagination-container mt-5">
+            <!-- ReactPaginate Equivalent -->
+            <!-- <ngx-pagination
+              [previousLabel]="'< '"
+              [nextLabel]="' >'"
+              [pageCount]="pageCount"
+              [marginPagesDisplayed]="2"
+              [pageRangeDisplayed]="3"
+              (pageChange)="handlePageClick($event)"
+              [containerClass]="'pagination justify-content-center'"
+              [pageClass]="'page-item'"
+              [pageLinkClass]="'page-link'"
+              [previousClass]="'page-item'"
+              [previousLinkClass]="'page-link'"
+              [nextClass]="'page-item'"
+              [nextLinkClass]="'page-link'"
+              [breakClass]="'page-item'"
+              [breakLinkClass]="'page-link'"
+              [disabled]="'disabled'"
+              [activeClass]="'active'"
+            ></ngx-pagination> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SellerFooter Component -->
+  <!-- <app-seller-footer></app-seller-footer> -->
+</div>

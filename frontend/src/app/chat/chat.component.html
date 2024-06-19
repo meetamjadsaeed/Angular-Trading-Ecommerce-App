@@ -1,0 +1,25 @@
+<div *ngIf="isSeller$ | async; else userTemplate">
+  <div class="seller_prodinv_page myorder_page">
+    <!-- <app-seller-header></app-seller-header> -->
+    <div class="container-fluid">
+      <div class="seller_prodinv_sec">
+        <div>
+          <h2>Seller Profile</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <!-- <app-seller-sidebar></app-seller-sidebar> -->
+          </div>
+          <div class="col-md-9">
+            <!-- <app-chat-wrapper [token]="token" [isSeller]="true"></app-chat-wrapper> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #userTemplate>
+  <!-- <app-header></app-header> -->
+  <!-- <app-chat-wrapper [token]="token" [isSeller]="false"></app-chat-wrapper> -->
+</ng-template>

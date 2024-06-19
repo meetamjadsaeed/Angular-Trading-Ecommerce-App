@@ -1,0 +1,86 @@
+<div class="sidebar_sec">
+  <div class="john-dow-all">
+    <div class="john-img">
+      <img *ngIf="imagePreview !== null" class="img-fluid" [src]="imagePreview" alt="" />
+      <img *ngIf="user.image !== undefined && user.image !== null" class="img-fluid"
+        [src]="userImageUrl + '/' + user.image" alt="" />
+      <img *ngIf="imagePreview === null && (user.image === undefined || user.image === null)" class="img-fluid"
+        src="assets/img/profile-img.png" alt="" />
+      <span class="addimageicon" (click)="imageRef.click()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </span>
+      <input #imageRef type="file" id="uploadfile" (change)="handleImageInputChange($event)" />
+    </div>
+    <div class="john-text">
+      <h3>{{ user.f_name }} {{ user.l_name }}</h3>
+    </div>
+  </div>
+  <div class="twolinks">
+    <a routerLink="/seller/profile">
+      <button class="sidebarbtn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i> Personal Info
+      </button>
+    </a>
+    <a routerLink="/seller/change-password">
+      <button class="sidebarbtn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i> Change Password
+      </button>
+    </a>
+    <a routerLink="/seller/ProductInventory">
+      <button class="sidebarbtn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i> Product Inventory
+      </button>
+    </a>
+    <a routerLink="/seller/tradingproduct">
+      <button class="sidebarbtn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i> Trading Products
+      </button>
+    </a>
+    <a routerLink="/seller/order">
+      <button class="sidebarbtn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i> My Orders
+      </button>
+    </a>
+    <button class="sidebarbtn" (click)="updateReadOnAll()" data-toggle="modal" data-target="#notificationmodal">
+      <i class="fa fa-angle-right" aria-hidden="true"></i> Notifications
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="notificationmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <h3>Notifications</h3>
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body">
+        <div *ngIf="notifications.length > 0">
+          <div *ngFor="let noti of notifications" class="notification_page">
+            <div class="container">
+              <div class="notification_card">
+                <div [class.active]="noti.read === 0" class="notification_content"
+                  (click)="handleClickNotification(noti.id, noti.modalable_id, noti.modalable_type)">
+                  <div class="notication_img">
+                    <img class="img-fluid" src="assets/img/notificationimg.png" alt="" />
+                    <p>{{ noti.title }}</p>
+                  </div>
+                  <div class="notification_para">
+                    <p>{{ noti.description }}</p>
+                    <!-- <span>{{ noti.created_at | date: 'dd MMM yyyy h:mm a' }}</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="notifications.length === 0" class="notification_page">
+          <div class="container">
+            <h4>No notifications found</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

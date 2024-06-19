@@ -1,1 +1,76 @@
-<p>productcart works!</p>
+<!-- <app-header></app-header> -->
+<section class="productCart">
+  <div class="container">
+    <div class="heading">
+      <h3 class="text-center title font-40 fw-600">Product Cart</h3>
+    </div>
+    <div class="tableDv">
+      <table>
+        <thead>
+          <tr class="topbar">
+            <th class="productDetail">PRODUCT NAME</th>
+            <th class="Proprice">UNIT PRICE</th>
+            <th class="qty">QUANTITY</th>
+            <th class="addcart">SUB TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <app-cart-section></app-cart-section> -->
+        </tbody>
+      </table>
+
+      <div class="row pt-5">
+        <div class="col-md-6">
+          <div class="discountCode">
+            <div class="head">
+              <p>Discount codes</p>
+            </div>
+            <div class="applyCoupon">
+              <!-- <input type="text" [(ngModel)]="coupons" /> -->
+              <button (click)="applyCouponsHandler($event)" [disabled]="loading">
+                {{ loading ? 'Wait..' : 'APPLY' }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-right">
+          <div class="productSummary">
+            <div class="subTotal">
+              <h6 class="rightt" style="color: #989898">Subtotal</h6>
+              <h6 style="color: #989898">Estimated Shipping Cost</h6>
+              <h6 *ngIf="couponDiscount != null" style="color: #989898">Coupon Discount</h6>
+            </div>
+            <div class="shipping">
+              <h6 class="price" style="color: #989898">£{{ subTotal.toFixed(2) }}</h6>
+              <h6 style="color: #989898">Free Shipping</h6>
+              <h6 *ngIf="couponDiscount != null" class="price" style="color: #989898">£{{ couponDiscount }}</h6>
+            </div>
+          </div>
+          <div class="Total">
+            <div class="property">
+              <p>TOTAL COST</p>
+            </div>
+            <div class="value">
+              <p> £{{ couponDiscount != null ? (subTotal - couponDiscount).toFixed(2) : subTotal.toFixed(2) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-baseline">
+      <div class="col-md-6">
+        <div class="button-group">
+          <a routerLink="/" class="btn">Continue Shopping</a>
+          <a class="btn grey" (click)="clearCart()">Clear</a>
+        </div>
+      </div>
+      <div class="col-md-6 text-right">
+        <div class="proceed">
+          <a (click)="proceedToCheckout()" class="btn">Proceed To Checkout</a>
+          <h6 style="color: #989898">You’ll still have a chance to review your order</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <app-footer></app-footer> -->

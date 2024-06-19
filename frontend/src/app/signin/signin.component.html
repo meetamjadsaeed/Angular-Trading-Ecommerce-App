@@ -1,0 +1,42 @@
+<!-- signin.component.html -->
+
+<section class="signin">
+  <div class="container">
+    <div class="logoDv">
+      <figure>
+        <a routerLink="/">
+          <img src="../../assets/img/trading-logo.png" alt="" />
+        </a>
+      </figure>
+    </div>
+    <div class="SigninBox">
+      <div class="head">
+        <h4>Welcome Back to Trading Centre LTD</h4>
+        <h4><strong>Where we provide Best Products</strong></h4>
+      </div>
+      <div class="actionBtn">
+        <p>Not a Member ?<a routerLink="/Signup">Sign Up</a></p>
+      </div>
+      <form (ngSubmit)="signInHandler()">
+        <div class="form-group">
+          <!-- <input type="email" id="email" [(ngModel)]="email" class="form-control" placeholder="Email" required /> -->
+        </div>
+        <div class="form-group">
+          <!-- <input type="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Password" required /> -->
+        </div>
+        <div class="form-group">
+          <!-- <select class="w-100 px-4 rounded-pill custom-select" [(ngModel)]="sellerCheck">
+            <option value="false">User</option>
+            <option value="true">Seller</option>
+          </select> -->
+        </div>
+        <button type="submit" [disabled]="loading">{{ loading ? 'Loading..' : 'Submit' }}</button>
+      </form>
+      <div class="actionBtn2">
+        <p><a routerLink="/forgotpassword">Forgot Password</a></p>
+        <p>By Creating Account you are agree to our <a routerLink="/termsandcondition">Terms & conditions</a></p>
+        <p><a routerLink="/">Back To Home</a></p>
+      </div>
+    </div>
+  </div>
+</section>

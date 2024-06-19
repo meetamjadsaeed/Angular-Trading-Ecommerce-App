@@ -1,0 +1,104 @@
+<!-- products.component.html -->
+
+<!-- Header Section -->
+<!-- <app-header></app-header> -->
+
+<!-- Banner Section -->
+<section class="banner universal-banner">
+  <div class="container">
+    <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ Parameters.Id }}
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div *ngIf="bannerData?.length > 0" class="Banner">
+      <div class="banner-box">
+        <figure>
+          <img [src]="bannerData[0]?.banner_image_url" alt="">
+        </figure>
+      </div>
+      <div class="contentDv">
+        <div class="contentFlex">
+          <p class="font-25">{{ bannerData[0]?.sub_title }}</p>
+          <h3 class="fw-600 font-80 line-height-50 subtitle">{{ bannerData[0]?.title }}</h3>
+          <p>{{ bannerData[0]?.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Banner Section End -->
+
+<!-- Product Slider Section -->
+<div class="container">
+  <div class="row pb-4">
+    <div class="col-md-6">
+      <h5 class="sub-heading fw-600 font-20">Some Best Products</h5>
+    </div>
+  </div>
+  <div class="regular">
+    <!-- <slick-carousel class="carousel" [config]="slickConfig">
+      <div *ngFor="let item of topProductsRedux">
+        <app-cards [item]="item"></app-cards>
+      </div>
+    </slick-carousel> -->
+  </div>
+</div>
+<!-- Product Slider Section End -->
+
+<!-- Products List Section -->
+<div *ngIf="loader" class="spinners product-loader">
+  <!-- <mat-spinner diameter="70" class="loader-center"></mat-spinner> -->
+</div>
+<div *ngIf="!loader">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="sortFilter pb-3">
+          <div class="filters-head filter-border d-flex align-items-center justify-content-between">
+            <h3 class="font-35 text-black">Popular Products</h3>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="productsData.length > 0; else noProducts" class="col-12">
+        <div class="row products-wrapper">
+          <div *ngFor="let product of productsData" class="col-md-3 col-6 mb-4">
+            <div class="productBox">
+              <div class="productImg">
+                <!-- <a [routerLink]="['/product', product.id]">
+                  <img [src]="product.image_url" alt="">
+                </a> -->
+              </div>
+              <div class="productName">
+                <!-- <h5><a [routerLink]="['/product', product.id]">{{ product.name }}</a></h5> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noProducts>
+        <div class="col-12 text-center">
+          <h4>No products found.</h4>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<!-- Products List Section End -->
+
+<!-- Pagination Section -->
+<div class="row justify-content-center pt-4" *ngIf="pageCount && pageCount > 1">
+  <!-- <pagination-controls (pageChange)="handlePageClick($event)" [id]="currentPage - 1"></pagination-controls> -->
+</div>
+<!-- Pagination Section End -->
+
+<!-- Footer Section -->
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,23 @@
+<div class="proddetail_sec">
+  <h5>Variations</h5>
+  <div class="proddetialname">
+    <!-- Angular's way of handling switches and selects -->
+    <label>Colors</label>
+    <!-- <input type="checkbox" [(ngModel)]="isColorActive" (change)="handleColor($event.target.checked)"> -->
+    <!-- <select *ngIf="isColorActive" multiple (change)="handleSystemColorSelection($event.target.value)"> -->
+    <!-- <option *ngFor="let color of systemDefaultColors" [value]="color.value">{{ color.label }}</option> -->
+    <!-- </select> -->
+  </div>
+  <div class="proddetialname">
+    <h6 class="prodtitle">Attributes</h6>
+    <!-- <select multiple (change)="handleAttributes($event.target.value)"> -->
+    <!-- <option *ngFor="let attribute of selectedAttribute" [value]="attribute.value">{{ attribute.label }}</option> -->
+    <!-- </select> -->
+  </div>
+  <div *ngFor="let x of customizeChoice; let index = index" class="proddetialname">
+    <h6 class="prodtitle">{{ x.title }}</h6>
+    <!-- <select multiple (change)="handleAttributesOption($event.target.value, index)">
+
+    </select> -->
+  </div>
+</div>
