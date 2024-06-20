@@ -1,0 +1,48 @@
+<div *ngIf="isOpenModal" class="modal custom-modal modal-width orderView-Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-center">Order Details</h2>
+        <!-- <fa-icon [icon]="faTimesCircle" class="modal-close" (click)="closeModal()"></fa-icon> -->
+      </div>
+      <div class="modal-body">
+        <table>
+          <thead>
+            <tr class="topbar">
+              <th></th>
+              <th class="productDetail">PRODUCT NAME</th>
+              <th class="Proprice">Amount</th>
+              <th class="productDetail">OrderNo</th>
+              <th class="productDetail">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of selectedData?.details; let i = index" class="products modal-padding">
+              <td class="Proprice">
+                <figure class="modal-productImg">
+                  <img [src]="item?.product?.thumbnail_url" alt="" class="image-fluid image-width" />
+                </figure>
+              </td>
+              <td class="productDetail">
+                <div class="product-detail">
+                  <div class="name">
+                    <p class="font-13">{{ item?.product?.name }}</p>
+                  </div>
+                </div>
+              </td>
+              <td class="name">
+                <p class="font-13">{{ item?.price }}</p>
+              </td>
+              <td class="name">
+                <p class="font-13">{{ item?.order_id }}</p>
+              </td>
+              <td class="Proprice">
+                <p class="font-13">{{ item?.delivery_status }}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

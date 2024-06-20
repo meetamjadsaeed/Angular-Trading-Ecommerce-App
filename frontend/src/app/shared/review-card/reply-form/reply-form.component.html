@@ -1,0 +1,8 @@
+<!-- <form [formGroup]="replyForm" (ngSubmit)="onSubmit()"> -->
+<div class="form-group">
+  <textarea formControlName="comment" class="form-control"></textarea>
+</div>
+<button type="submit" class="btn btn-secondary" [disabled]="loading">
+  {{ loading ? 'Loading...' : 'Submit' }}
+</button>
+<!-- </form> -->

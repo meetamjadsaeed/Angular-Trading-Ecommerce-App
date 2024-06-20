@@ -1,0 +1,68 @@
+<div class="header-blue">
+  <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+    <div class="container">
+      <a class="navbar-brand navbar-left" routerLink="/">
+        <!-- <img [src]="(companyInfo$ | async)?.web_logo" width="200" alt="Logo" class="logo-width" /> -->
+      </a>
+
+      <button class="navbar-toggler" type="button" (click)="toggleCollapse()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- <div class="collapse navbar-collapse" [ngClass]="{'show': collapse}"> -->
+      <ul class="nav navbar-right">
+        <li class="nav-item" role="presentation">
+          <!-- <a routerLink="/" [ngClass]="{ 'active-nav active': route.snapshot.firstChild?.routeConfig?.path === '' }"> -->
+          <!-- Adjust SVG or icon based on your preference -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20.5" height="23.332" viewBox="0 0 25.5 28.332">
+            <!-- SVG Path here -->
+          </svg>
+          <!-- </a> -->
+        </li>
+      </ul>
+
+      <ul class="nav navbar-right">
+        <li *ngIf="(sellerIsLogin$ | async)" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="profile-container">
+              <!-- <img [src]="(userData$ | async)?.image ? (userData$ | async)?.image : 'assets/img/profile-img.png'"
+                  alt="Profile Image" class="image-fluid image-width" [style.borderRadius]="'50%'"> -->
+            </div>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!-- <a class="dropdown-item" [routerLink]="'/seller/auth/profile'"> -->
+            <!-- {{ (userData$ | async)?.f_name.substring(0, 8) }} -->
+            <!-- </a> -->
+            <!-- <a class="dropdown-item" [routerLink]="'/seller/chats'"> -->
+            Messages
+            <!-- </a> -->
+            <a class="dropdown-item" (click)="logoutHandler()">
+              <p class="header-role" style="cursor: pointer">
+                {{ loading ? 'Loading..' : 'Logout' }}
+              </p>
+            </a>
+          </div>
+        </li>
+
+        <ng-container *ngIf="!(sellerIsLogin$ | async)">
+          <li class="nav-item p-2" role="presentation">
+            <a routerLink="/Signin" class="btn btn-signup">
+              Sign In
+            </a>
+          </li>
+          <li class="nav-item p-2" role="presentation">
+            <a routerLink="/Signup" class="btn btn-signup">
+              Sign Up
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- </div> -->
+  </nav>
+</div>
+
+<!-- Use Router Outlet for nested routing -->
+<!-- <router-outlet></router-outlet> -->

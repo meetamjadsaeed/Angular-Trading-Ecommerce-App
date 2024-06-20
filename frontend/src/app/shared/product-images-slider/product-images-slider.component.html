@@ -1,0 +1,18 @@
+<div class="product-slide">
+  <!-- <ngx-slick-carousel #slider1="slick-carousel" class="slider-for" [config]="slideConfig1"> -->
+  <div ngxSlickItem *ngFor="let item of ParamData; let i = index" class="product-images mainimage-container"
+    [attr.data-index]="i">
+    <figure>
+      <img [src]="ImageUrl + '/' + item" alt="" class="image-fluid image-width" />
+    </figure>
+  </div>
+  <!-- </ngx-slick-carousel> -->
+
+  <!-- <ngx-slick-carousel #slider2="slick-carousel" class="slider-nav slick-custom" [config]="slideConfig2"> -->
+  <div ngxSlickItem *ngFor="let item of ParamData; let i = index" class="inner-image-container" [attr.data-index]="i">
+    <figure>
+      <img [src]="ImageUrl + '/' + item" alt="" class="image-fluid image-width" />
+    </figure>
+  </div>
+  <!-- </ngx-slick-carousel> -->
+</div>

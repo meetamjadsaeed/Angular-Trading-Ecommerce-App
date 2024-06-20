@@ -1,0 +1,41 @@
+<div class="mainReview">
+  <div class="brieflyReview">
+    <div class="img-box">
+      <figure class="image-review">
+        <!-- <img [src]="item?.customer?.profile_url ? item?.customer?.profile_url : ramdomImage(item?.customer?.full_name)" alt="" class="image-fluid image-width"> -->
+      </figure>
+    </div>
+    <div class="contentDv border-2 border-black">
+      <div class="info">
+        <h6 class="name">{{ item?.customer?.full_name }}</h6>
+        <div class="spacer">-</div>
+        <!-- <h6 class="date">{{ moment(item?.customer?.created_at).format('MMMM Do YYYY, h:mm a') }}</h6> -->
+      </div>
+      <div class="descrip">
+        <p>{{ item?.comment }}</p>
+        <div class="rating mb-3">
+          <div class="stars">
+            <!-- Replace with Angular rating component or library -->
+            <!-- Example: ngx-star-rating -->
+            <!-- Example: [rating]="item?.rating" -->
+            <span>{{ item?.rating }}</span>
+          </div>
+          <div class="rply-btn">
+            <a *ngIf="seller" (click)="toggleFormActive()">Reply</a>
+          </div>
+        </div>
+      </div>
+      <!-- <app-reply-box *ngFor="let reply of item.replies"
+                     [reply]="reply"
+                     [seller]="seller"
+                     (refreshReviews)="refreshReviews()">
+      </app-reply-box>
+      <app-reply-form *ngIf="formActive"
+                      [reply]="initialReplyForm"
+                      [seller]="seller"
+                      (resetActiveForm)="toggleFormActive()"
+                      (refreshReviews)="refreshReviews()">
+      </app-reply-form> -->
+    </div>
+  </div>
+</div>

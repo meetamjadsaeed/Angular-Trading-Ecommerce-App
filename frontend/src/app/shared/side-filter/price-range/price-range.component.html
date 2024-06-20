@@ -1,0 +1,27 @@
+<div class="price-filter">
+  <div class="head filter-border pt-4">
+    <h4 class="font-25">Price</h4>
+  </div>
+  <div class="range-head">
+    <p>Range:</p>
+    <p class="fw-600">
+      £{{ startPrice }} - £{{ endPrice }}
+    </p>
+  </div>
+  <div class="range-slide pb-3">
+    <div class="from">
+      <label for="from">From</label><br />
+      <!-- <input type="number" id="from" [(ngModel)]="startPrice" /> -->
+    </div>
+    <div class="spacer"></div>
+    <div class="from">
+      <label for="to">To</label><br />
+      <!-- <input type="number" id="to" [(ngModel)]="endPrice" /> -->
+    </div>
+  </div>
+</div>
+<div>
+  <button class="btn price-btn" (click)="PriceFilterHandler($event)">
+    Price Filter
+  </button>
+</div>

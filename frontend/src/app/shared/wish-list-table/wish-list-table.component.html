@@ -1,0 +1,31 @@
+<tr class="products bookmark">
+  <td class="productDetail">
+    <div class="product-detail">
+      <div class="imgBox">
+        <figure>
+          <img [src]="item?.product?.thumbnail_url" class="image-fluid image-width" alt="" />
+        </figure>
+      </div>
+      <div class="name">
+        <p class="font-13">{{ item?.product?.name }}</p>
+      </div>
+    </div>
+  </td>
+  <td class="Proprice">
+    <h5 class="font-15">{{ item?.product?.unit_price }}</h5>
+  </td>
+  <td class="addcart">
+    <div class="ActionBtn">
+      <div class="cartBtn">
+        <p (click)="AddToCartHandler(item)">
+          <a>
+            Add to cart <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+          </a>
+        </p>
+      </div>
+      <div class="deleteBtn" (click)="DeleteWishListHandler(item?.product?.id)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+    </div>
+  </td>
+</tr>

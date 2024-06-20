@@ -1,0 +1,27 @@
+<div class="contentDv ml-4">
+  <div class="info">
+    <h6 class="name">{{ reply?.replyable?.full_name ?? (reply?.replyable?.f_name + ' ' + reply?.replyable?.l_name) }} {{
+      (reply?.replyable?.role === 'Customer' || reply?.replyable?.role === 'Trader') && !seller ? '' : '(' +
+      reply?.replyable?.role + ')' }}</h6>
+    <div class="spacer">-</div>
+    <!-- <h6 class="date">{{ moment(reply?.created_at).format('MMMM Do YYYY, h:mm a') }}</h6> -->
+  </div>
+  <div class="descrip">
+    <p>{{ reply?.comment }}</p>
+    <div class="rply-btn">
+      <!-- <a (click)="formActive = true">Reply</a> -->
+    </div>
+  </div>
+  <!-- <app-reply-box *ngFor="let comment of reply.replies"
+                 [reply]="comment"
+                 [seller]="seller"
+                 type="child"
+                 (refreshReviews)="refreshReviews()">
+  </app-reply-box> -->
+  <!-- <app-reply-form *ngIf="formActive"
+                  [reply]="reply"
+                  [seller]="seller"
+                  (resetActiveForm)="formActive = false"
+                  (refreshReviews)="refreshReviews()">
+  </app-reply-form> -->
+</div>

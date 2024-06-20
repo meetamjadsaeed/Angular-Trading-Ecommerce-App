@@ -1,0 +1,42 @@
+<div class="PRODUCTS_PAGE h-100">
+  <div class="card product h-100" *ngIf="item">
+    <a (click)="navigateToDetail(item.id)">
+      <div class="card-body">
+        <span class="notify-badge" *ngIf="item.discount && item.discount !== 0">{{ item.discount }}%off</span>
+        <div class="card-img-actions">
+          <img [src]="item.thumbnail_url" class="card-img img-fluid" width="96" height="350" alt="">
+        </div>
+      </div>
+    </a>
+
+    <div class="inner card-body">
+      <div class="d-flex justify-content-between bd-highlight">
+        <div class="bd-highlight"></div>
+        <div class="bd-highlight">
+          <div class="rating-inner-cont mt-3 mb-3">
+            <!-- <app-rating [ratingValue]="item.rating.average"></app-rating> -->
+          </div>
+        </div>
+      </div>
+      <div>
+        <h6 class="font-weight-semibold">
+          <a class="text-black product-title" data-abc="true">{{ item.name }}</a>
+        </h6>
+      </div>
+
+      <div class="d-flex justify-content-around bd-highlight">
+        <div class="p-2 bd-highlight">
+          <h3 class="mb-0 font-weight-semibold price">
+            <span *ngIf="item.after_discount_price">£{{ item.after_discount_price }}</span>
+            <!-- <strike *ngIf="item.after_discount_price">£{{ item.unit_price }}</strike> -->
+            <span *ngIf="!item.after_discount_price">£{{ item.unit_price }}</span>
+          </h3>
+        </div>
+        <div class="p-2 bd-highlight"></div>
+        <div class="p-2 bd-highlight">
+          <!-- <app-product-action [productData]="item"></app-product-action> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
