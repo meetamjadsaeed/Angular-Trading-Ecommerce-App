@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BASE_URL, ENDPOINTS } from '../network/api-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'https://api.example.com'; // Replace with your API URL
+  private baseUrl = BASE_URL;
+  private endpoint = ENDPOINTS.ORDER;
 
   constructor(private http: HttpClient) {}
 
-  trackOrder(trackCode: string, token: string): Observable<any> {
-    return this.http.post(
-      `${this.apiUrl}/order/track`,
-      { trackCode },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  placeOrder(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}${this.endpoint}`, data);
+  }
+
+  getOrder(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}${this.endpoint}/${id}`);
+  }
+
+  updateOrder(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}${this.endpoint}/${id}`, data);
+  }
+
+  deleteOrder(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}${this.endpoint}/${id}`);
   }
 }

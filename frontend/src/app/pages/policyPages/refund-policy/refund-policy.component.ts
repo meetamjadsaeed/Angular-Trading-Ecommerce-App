@@ -1,5 +1,7 @@
+// refund-policy.component.ts
+
 import { Component, OnInit } from '@angular/core';
-// import { PageData } from '../../../network/Network';
+import { PageDataService } from '../../services/page-data.service';
 
 @Component({
   selector: 'app-refund-policy',
@@ -10,21 +12,22 @@ export class RefundPolicyComponent implements OnInit {
   refund: any = {};
   spinLoad: boolean = false;
 
-  constructor() {}
+  constructor(private pageDataService: PageDataService) {}
 
   ngOnInit(): void {
     this.spinLoad = true;
-    let data = 'Refund Policy';
-    // PageData(data)
-    //   .then((res) => {
-    //     this.refund = res?.data?.data?.pages;
-    //     this.spinLoad = false;
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     this.spinLoad = false;
-    //   });
+    let pageName = 'Refund Policy';
+    this.pageDataService
+      .getPageData(pageName)
+      .then((res) => {
+        this.refund = res?.data?.data?.pages;
+        this.spinLoad = false;
+      })
+      .catch((err) => {
+        console.error('Error fetching page data', err);
+        this.spinLoad = false;
+      });
 
-    // window.scroll(0, 0);
+    window.scroll(0, 0);
   }
 }

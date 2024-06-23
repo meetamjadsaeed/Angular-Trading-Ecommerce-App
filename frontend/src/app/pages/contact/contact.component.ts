@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-// import { ContactService } from '../../services/contact.service';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { ContactService } from '../services/contact.service';
-// import { selectToken, selectCompanyInfo } from '../../store/selectors/auth.selectors';
+import { ContactUsService } from '../../services/contact-us.service';
 
 @Component({
   selector: 'app-contact',
@@ -15,14 +11,11 @@ import { ContactService } from '../services/contact.service';
 export class ContactComponent {
   contactForm: FormGroup;
   loading = false;
-  token$: Observable<string>;
-  companyInfo$: Observable<any>;
 
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private contactService: ContactService,
-    private store: Store
+    private contactService: ContactUsService
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -31,9 +24,6 @@ export class ContactComponent {
       subject: ['', Validators.required],
       message: ['', [Validators.required, Validators.minLength(20)]],
     });
-
-    // this.token$ = this.store.pipe(select(selectToken));
-    // this.companyInfo$ = this.store.pipe(select(selectCompanyInfo));
   }
 
   onSubmit() {
@@ -44,21 +34,17 @@ export class ContactComponent {
 
     this.loading = true;
 
-    this.token$.subscribe((token) => {
-      this.contactService
-        .postContactUs(this.contactForm.value, token)
-        .subscribe(
-          () => {
-            this.toastr.success('Successfully sent');
-            this.contactForm.reset();
-            this.loading = false;
-          },
-          (error) => {
-            this.toastr.error('Failed to send');
-            this.loading = false;
-            console.error(error);
-          }
-        );
-    });
+    this.contactService.postContactUs(this.contactForm.value).subscribe(
+      () => {
+        this.toastr.success('Successfully sent');
+        this.contactForm.reset();
+        this.loading = false;
+      },
+      (error) => {
+        this.toastr.error('Failed to send');
+        this.loading = false;
+        console.error(error);
+      }
+    );
   }
 }

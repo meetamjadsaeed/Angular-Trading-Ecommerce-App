@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar'; // Replace with your toast notification service
-import { AuthService } from '../auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-forgot-email',
@@ -31,22 +31,28 @@ export class ForgotEmailComponent {
     this.loading = true;
     const data = { email: this.email.value };
 
-    // setTimeout(() => { // Simulating asynchronous operation
-    //   this.authService.forgotPassword(data)
-    //     .subscribe(
-    //       () => {
-    //         this.loading = false;
-    //         this.snackBar.open('Successfully sent', '', { duration: 3000, panelClass: 'success-snackbar' });
-    //         this.email.reset(); // Reset form field after successful submission
-    //         // Navigate to new password route
-    //         this.router.navigate(['/newpassword']);
-    //       },
-    //       error => {
-    //         this.loading = false;
-    //         console.error(error);
-    //         this.snackBar.open(error?.error?.message || 'An error occurred', '', { duration: 3000, panelClass: 'error-snackbar' });
-    //       }
-    //     );
-    // }, 600);
+    setTimeout(() => {
+      // Simulating asynchronous operation
+      this.authService.forgotPassword(data).subscribe(
+        () => {
+          this.loading = false;
+          this.snackBar.open('Successfully sent', '', {
+            duration: 3000,
+            panelClass: 'success-snackbar',
+          });
+          this.email.reset(); // Reset form field after successful submission
+          // Navigate to new password route
+          this.router.navigate(['/newpassword']);
+        },
+        (error) => {
+          this.loading = false;
+          console.error(error);
+          this.snackBar.open(error?.error?.message || 'An error occurred', '', {
+            duration: 3000,
+            panelClass: 'error-snackbar',
+          });
+        }
+      );
+    }, 600);
   }
 }

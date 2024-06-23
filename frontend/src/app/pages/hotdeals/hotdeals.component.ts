@@ -1,5 +1,8 @@
+// hotdeals.component.ts
+
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { HotDealsService } from '../../services/hot-deals.service';
 
 @Component({
   selector: 'app-hotdeals',
@@ -7,31 +10,32 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./hotdeals.component.css'],
 })
 export class HotdealsComponent implements OnInit {
-  bannerData: any[] = []; // Adjust type according to your API response
-  // Define other properties as needed
+  bannerData: any[] = [];
+  loading = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private hotdealsService: HotDealsService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.fetchBannerData();
-    // Initialize other data fetching methods as needed
   }
 
-  fetchBannerData() {
-    this.http
-      .get<any>('API_URL') // Replace 'API_URL' with your actual API endpoint
-      .subscribe(
-        (data) => {
-          // Process API response as needed
-          this.bannerData = data?.filter(
-            (item) => item.banner_type === 'product_page'
-          );
-        },
-        (error) => {
-          console.error('Error fetching banner data', error);
-        }
-      );
+  fetchBannerData(): void {
+    this.loading = true;
+    this.hotdealsService.getBannerData().subscribe(
+      (data) => {
+        this.bannerData = data?.filter(
+          (item) => item.banner_type === 'product_page'
+        );
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching banner data', error);
+        this.toastr.error('Failed to fetch banner data');
+        this.loading = false;
+      }
+    );
   }
-
-  // Define other methods for fetching products, handling filters, pagination, etc.
 }

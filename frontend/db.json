@@ -1,0 +1,150 @@
+{
+  "auth": { "status": "success", "message": "Authenticated" },
+  "register": {
+    "status": "success",
+    "message": "User registered successfully"
+  },
+  "login": { "status": "success", "message": "User logged in successfully" },
+  "categories": [
+    { "id": 1, "name": "Electronics" },
+    { "id": 2, "name": "Books" }
+  ],
+  "customer": { "id": 1, "name": "John Doe" },
+  "wish-list": [
+    { "id": 1, "productId": 1, "customerId": 1 },
+    { "id": 2, "productId": 2, "customerId": 1 }
+  ],
+  "colors": [
+    { "id": 1, "name": "Red" },
+    { "id": 2, "name": "Blue" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "description": "Description of Product 1",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "description": "Description of Product 2",
+      "price": 150
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "description": "Description of Product 3",
+      "price": 120
+    }
+  ],
+  "hot-deals": [
+    { "id": 1, "productId": 1, "discount": 20 },
+    { "id": 2, "productId": 2, "discount": 15 }
+  ],
+  "related-products": [{ "id": 1, "relatedTo": 1, "productId": 2 }],
+  "trading": [{ "id": 1, "productId": 1, "status": "active" }],
+  "reviews": [{ "id": 1, "productId": 1, "review": "Great product!" }],
+  "replies": [{ "id": 1, "reviewId": 1, "reply": "Thank you!" }],
+  "latest": [{ "id": 1, "productId": 1, "name": "Latest Smartphone" }],
+  "order": [{ "id": 1, "customerId": 1, "status": "pending" }],
+  "list": [{ "id": 1, "name": "Order List" }],
+  "contactUs": { "status": "success", "message": "Contact request submitted" },
+  "newsletter": [{ "id": 1, "email": "john.doe@example.com" }],
+  "add": { "status": "success", "message": "Added successfully" },
+  "faq": [
+    {
+      "id": 1,
+      "question": "What is your return policy?",
+      "answer": "30 days return policy"
+    }
+  ],
+  "place": { "status": "success", "message": "Order placed" },
+  "track": { "status": "success", "message": "Order tracked" },
+  "remove_all": { "status": "success", "message": "All items removed" },
+  "update-profile": { "status": "success", "message": "Profile updated" },
+  "social-media": [
+    { "id": 1, "platform": "Facebook", "link": "https://facebook.com" }
+  ],
+  "links": [
+    { "id": 1, "name": "Privacy Policy", "url": "https://example.com/privacy" }
+  ],
+  "company-information": {
+    "name": "Example Corp",
+    "address": "123 Example Street"
+  },
+  "coupon": [{ "id": 1, "code": "DISCOUNT10", "discount": 10 }],
+  "apply": { "status": "success", "message": "Coupon applied" },
+  "remove": { "status": "success", "message": "Item removed" },
+  "search": [{ "id": 1, "query": "Smartphone" }],
+  "brands": [
+    { "id": 1, "name": "Brand A" },
+    { "id": 2, "name": "Brand B" }
+  ],
+  "attributes": [{ "id": 1, "name": "Color", "value": "Red" }],
+  "price": [{ "id": 1, "productId": 1, "price": 699 }],
+  "store": [{ "id": 1, "name": "Store A" }],
+  "banners": [
+    {
+      "id": 1,
+      "type": "homepage",
+      "imageUrl": "https://example.com/banner1.jpg"
+    }
+  ],
+  "ads": [
+    { "id": 1, "title": "Ad 1", "imageUrl": "https://example.com/ad1.jpg" }
+  ],
+  "blogs": [
+    { "id": 1, "title": "Blog Post 1", "content": "This is a blog post" }
+  ],
+  "blog": { "id": 1, "title": "Blog Post 1", "content": "This is a blog post" },
+  "country": [{ "id": 1, "name": "USA" }],
+  "forgot-password": {
+    "status": "success",
+    "message": "Password reset link sent"
+  },
+  "reset-password": {
+    "status": "success",
+    "message": "Password reset successfully"
+  },
+  "change_password": {
+    "status": "success",
+    "message": "Password changed successfully"
+  },
+  "top-products": [{ "id": 1, "name": "Top Product 1" }],
+  "trade-products": [{ "id": 1, "productId": 1, "tradeValue": 100 }],
+  "details": { "id": 1, "detail": "Product detail" },
+  "show": { "id": 1, "detail": "Show detail" },
+  "get_pages": [{ "id": 1, "type": "page", "content": "Page content" }],
+  "chats": [{ "id": 1, "message": "Hello", "seen": false }],
+  "seen": { "status": "success", "message": "Marked as seen" },
+  "seller": { "id": 1, "name": "Seller 1" },
+  "profile": { "id": 1, "name": "Seller Profile" },
+  "profile/update": { "status": "success", "message": "Profile updated" },
+  "profile/change-password": {
+    "status": "success",
+    "message": "Password changed"
+  },
+  "products/store": { "status": "success", "message": "Product stored" },
+  "products/upload-excel-products": {
+    "status": "success",
+    "message": "Products uploaded"
+  },
+  "products/update": { "status": "success", "message": "Product updated" },
+  "products/delete": { "status": "success", "message": "Product deleted" },
+  "products/delete-in-bulk": {
+    "status": "success",
+    "message": "Products deleted in bulk"
+  },
+  "seller/notifications": [{ "id": 1, "title": "Notification 1" }],
+  "seller/notifications/mark": {
+    "status": "success",
+    "message": "Notification marked"
+  },
+  "seller/notifications/mark-read": {
+    "status": "success",
+    "message": "Notification marked as read"
+  },
+  "seller/orders": [{ "id": 1, "orderId": 1, "status": "pending" }],
+  "seller/orders/show": { "id": 1, "orderId": 1, "status": "pending" }
+}

@@ -1,12 +1,13 @@
-// home.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr'; // Replace with your toast service
+import { ProductsService } from '../../services/products.service';
+import { BannersService } from '../../services/banners.service';
+
 @Component({
   selector: 'app-home',
-  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
@@ -25,7 +26,13 @@ export class HomeComponent implements OnInit {
   checked: string = '';
   currentPage: number = 1;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private productService: ProductsService,
+    private bannerService: BannersService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -33,39 +40,30 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.http.get<any>(`/api/products?page=${this.currentPage}`).subscribe(
+    this.productService.getAllProducts(this.currentPage).subscribe(
       (res) => {
         this.productsData = res?.data?.data?.data;
         this.productImages = res?.data?.data?.products?.data;
       },
       (err) => {
         console.error(err);
-      }
-    );
-  }
-
-  getProductsFilter(id: string) {
-    this.http.get<any>(`/api/products/filter/${id}`).subscribe(
-      (res) => {
-        // Handle response as needed
-      },
-      (err) => {
-        console.error(err);
+        this.toastr.error('Failed to fetch products');
       }
     );
   }
 
   getHomeBanner() {
-    // this.http.get<any>('/api/home/banner').subscribe(
-    //   (res) => {
-    //     this.bannerData = res?.data.filter(
-    //       (item) => item.banner_type === 'main_banner'
-    //     );
-    //   },
-    //   (err) => {
-    //     console.error(err);
-    //   }
-    // );
+    this.bannerService.getMainBanners().subscribe(
+      (res) => {
+        this.bannerData = res?.data.filter(
+          (item) => item.banner_type === 'main_banner'
+        );
+      },
+      (err) => {
+        console.error(err);
+        this.toastr.error('Failed to fetch banners');
+      }
+    );
   }
 
   submitSearch(event: any) {
@@ -73,23 +71,21 @@ export class HomeComponent implements OnInit {
       event.preventDefault();
       this.searchSpinLoad = true;
       if (!this.productsSearch) {
-        // Handle error with toast or message
         this.searchSpinLoad = false;
+        this.toastr.warning('Please enter a search term');
         return;
       }
-      this.http
-        .get<any>(`/api/products/search/${this.productsSearch}`)
-        .subscribe(
-          (res) => {
-            this.searchData = res?.data?.data?.products?.data;
-            this.searchSpinLoad = false;
-          },
-          (err) => {
-            console.error(err);
-            // Handle error with toast or message
-            this.searchSpinLoad = false;
-          }
-        );
+      this.productService.searchProducts(this.productsSearch).subscribe(
+        (res) => {
+          this.searchData = res?.data?.data?.products?.data;
+          this.searchSpinLoad = false;
+        },
+        (err) => {
+          console.error(err);
+          this.searchSpinLoad = false;
+          this.toastr.error('Failed to search products');
+        }
+      );
     }
   }
 
@@ -100,12 +96,21 @@ export class HomeComponent implements OnInit {
 
   handleSelectCategory(id: string) {
     this.checked = id;
-    this.getProductsFilter(id);
+    this.productService.getProductsByCategory(id).subscribe(
+      (res) => {
+        this.productsData = res?.data?.data?.data;
+        this.productImages = res?.data?.data?.products?.data;
+      },
+      (err) => {
+        console.error(err);
+        this.toastr.error('Failed to fetch products by category');
+      }
+    );
   }
 
   navigateTo(url: string) {
     if (url) {
-      window.open(url, '_blank'); // Open URL in a new tab
+      window.open(url, '_blank');
     }
   }
 }

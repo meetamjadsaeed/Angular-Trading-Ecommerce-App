@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { MatSnackBar } from '@angular/material/snack-bar'; // Replace with your toast notification service
-import { AuthService } from '../auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -47,20 +47,26 @@ export class ForgotPasswordComponent {
       reset_token: this.token,
     };
 
-    // setTimeout(() => { // Simulating asynchronous operation
-    //   this.authService.setResetPassword(data)
-    //     .subscribe(
-    //       () => {
-    //         this.loading = false;
-    //         this.snackBar.open('Password reset successful', '', { duration: 3000, panelClass: 'success-snackbar' });
-    //         this.router.navigate(['/signin']);
-    //       },
-    //       error => {
-    //         this.loading = false;
-    //         console.error(error);
-    //         this.snackBar.open(error?.error?.message || 'An error occurred', '', { duration: 3000, panelClass: 'error-snackbar' });
-    //       }
-    //     );
-    // }, 600);
+    setTimeout(() => {
+      // Simulating asynchronous operation
+      this.authService.setResetPassword(data).subscribe(
+        () => {
+          this.loading = false;
+          this.snackBar.open('Password reset successful', '', {
+            duration: 3000,
+            panelClass: 'success-snackbar',
+          });
+          this.router.navigate(['/signin']);
+        },
+        (error) => {
+          this.loading = false;
+          console.error(error);
+          this.snackBar.open(error?.error?.message || 'An error occurred', '', {
+            duration: 3000,
+            panelClass: 'error-snackbar',
+          });
+        }
+      );
+    }, 600);
   }
 }

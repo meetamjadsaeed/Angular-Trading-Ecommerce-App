@@ -1,11 +1,6 @@
-// src/app/components/product-detail/product-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { ProductService } from 'src/app/services/product.service';
-import { Store } from '@ngrx/store';
-// import { AppState } from 'src/app/store/app.state';
-// import { AddToCart } from 'src/app/store/actions/cart.actions';
-// import { SetSender } from 'src/app/store/actions/chat.actions';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -29,112 +24,106 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private productService: ProductService,
-    private store: Store<AppState>,
+    private productService: ProductsService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
-    // this.token = this.store.select((state) => state.auth.token);
-    this.userData = this.store.select((state) => state.auth.userData);
-    this.socialLinks = this.store.select((state) => state.auth.socialMedia);
-
     this.loadProductDetails(productId);
   }
 
   loadProductDetails(productId: string): void {
-    // this.productService.getProductDetails(productId).subscribe((res) => {
-    //   this.product = res.data.product;
-    //   this.loadSimilarProducts(this.product.id);
-    //   this.loadProductReviews(this.product.id, this.currentPage);
-    // });
+    this.productService.getProductDetails(productId).subscribe((res) => {
+      this.product = res.data.product;
+      this.loadSimilarProducts(this.product.id);
+      this.loadProductReviews(this.product.id, this.currentPage);
+    });
   }
 
   loadSimilarProducts(productId: string): void {
-    // this.productService.getSimilarProducts(productId).subscribe((res) => {
-    //   this.similarProducts = res.data;
-    // });
+    this.productService.getSimilarProducts(productId).subscribe((res) => {
+      this.similarProducts = res.data;
+    });
   }
 
   loadProductReviews(productId: string, page: number): void {
-    // this.productService
-    //   .getSelectedProductReviews(productId, page)
-    //   .subscribe((res) => {
-    //     this.reviews = res.data.data;
-    //     this.pageCount = Math.ceil(res.data.total / res.data.per_page);
-    //   });
+    this.productService
+      .getSelectedProductReviews(productId, page)
+      .subscribe((res) => {
+        this.reviews = res.data.data;
+        this.pageCount = Math.ceil(res.data.total / res.data.per_page);
+      });
   }
 
   addWishList(): void {
-    // this.wishLoading = true;
-    // const data = { product_id: this.product.id };
-    // this.productService.addWishList(data, this.token).subscribe(
-    //   (res) => {
-    //     this.wishLoading = false;
-    //     alert('Product added to wishlist');
-    //   },
-    //   (err) => {
-    //     this.wishLoading = false;
-    //     alert('Error adding to wishlist');
-    //   }
-    // );
+    this.wishLoading = true;
+    const data = { product_id: this.product.id };
+    this.productService.addWishList(data, this.token).subscribe(
+      (res) => {
+        this.wishLoading = false;
+        alert('Product added to wishlist');
+      },
+      (err) => {
+        this.wishLoading = false;
+        alert('Error adding to wishlist');
+      }
+    );
   }
 
   addToCart(): void {
-    // const tradeProduct = this.product.is_trade == 1;
-    // if (this.product.current_stock <= 0) {
-    //   alert('Item is out of stock');
-    //   return;
-    // }
-    // const itemExists = this.store
-    //   .select((state) => state.cart.cartData)
-    //   .find((item) => item.id === this.product.id);
-    // if (itemExists) {
-    //   alert('Item already in cart');
-    // } else {
-    //   const colorData = JSON.parse(this.product.colors);
-    //   const data = {
-    //     id: this.product.id,
-    //     price: this.product.unit_price,
-    //     quantity: tradeProduct ? this.product.trade_qty : 1,
-    //     color: this.color || colorData,
-    //     productitem: this.product,
-    //   };
-    //   this.store.dispatch(AddToCart(data));
-    //   this.router.navigate(['/product-cart']);
-    // }
+    const tradeProduct = this.product.is_trade == 1;
+    if (this.product.current_stock <= 0) {
+      alert('Item is out of stock');
+      return;
+    }
+    // Implement color selection logic if necessary
+
+    const data = {
+      id: this.product.id,
+      price: this.product.unit_price,
+      quantity: tradeProduct ? this.product.trade_qty : 1,
+      color: this.color || this.product.colors,
+      productitem: this.product,
+    };
+    this.productService.addToCart(data).subscribe(
+      () => {
+        alert('Item added to cart');
+        this.router.navigate(['/product-cart']);
+      },
+      (err) => {
+        console.error('Error adding to cart', err);
+        alert('Error adding to cart');
+      }
+    );
   }
 
   sendMessageToSupplier(seller: any): void {
-    // this.store.dispatch(SetSender(seller));
-    // this.router.navigate(['/auth/chats/', seller.name]);
+    // Implement logic for sending message to seller
+    this.router.navigate(['/auth/chats/', seller.name]);
   }
 
   submitRating(): void {
-    // this.loading = true;
-    // if (!this.rating || !this.comment) {
-    //   alert('Please enter all fields');
-    //   this.loading = false;
-    //   return;
-    // }
-    // const data = {
-    //   product_id: this.product.id,
-    //   comment: this.comment,
-    //   rating: this.rating,
-    // };
-    // this.productService.postProductRating(data, this.token).subscribe(
-    //   (res) => {
-    //     this.loading = false;
-    //     alert('Review submitted successfully');
-    //     this.rating = 0;
-    //     this.comment = '';
-    //     this.loadProductReviews(this.product.id, this.currentPage);
-    //   },
-    //   (err) => {
-    //     this.loading = false;
-    //     alert('Error submitting review');
-    //   }
-    // );
+    if (!this.rating || !this.comment) {
+      alert('Please enter all fields');
+      return;
+    }
+    const data = {
+      product_id: this.product.id,
+      comment: this.comment,
+      rating: this.rating,
+    };
+    this.productService.postProductRating(data).subscribe(
+      () => {
+        alert('Review submitted successfully');
+        this.rating = 0;
+        this.comment = '';
+        this.loadProductReviews(this.product.id, this.currentPage);
+      },
+      (err) => {
+        console.error('Error submitting review', err);
+        alert('Error submitting review');
+      }
+    );
   }
 }

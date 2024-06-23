@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-// import { WishListData } from '../../../redux/actions/AuthActions';
-// import { GetAllOrders, GetWishList } from '../../../network/Network';
-// import { ImageUrl } from '../../../network/ApiUrl';
-// import { SpinnerCircular } from 'spinners-react';
-// import * as fromApp from '../../../store/app.reducer';
-// import { ViewOrderModal } from '../../components/Modal/ViewOrderModal';
+import { OrderService } from '../../../services/order.service'; // Adjust path as per your file structure
+import { ViewOrderModal } from '../../components/Modal/ViewOrderModal';
 
 @Component({
   selector: 'app-my-orders',
@@ -24,8 +17,7 @@ export class MyOrdersComponent implements OnInit {
   isOpenModal: boolean = false;
   selectedData: any;
 
-  // constructor(private router: Router, private store: Store<fromApp.AppState>) {}
-  constructor() {}
+  constructor(private router: Router, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.getAllOrders();
@@ -37,19 +29,20 @@ export class MyOrdersComponent implements OnInit {
   }
 
   getAllOrders(): void {
-    // this.spinLoad = true;
-    // GetAllOrders(this.currentPage, this.Token)
-    //   .then((res: any) => {
-    //     this.myOrdersData = res?.data?.data?.data;
-    //     const total = res?.data?.data?.total;
-    //     const limit = res?.data?.data?.per_page;
-    //     this.pageCount = Math.ceil(total / limit);
-    //     this.spinLoad = false;
-    //   })
-    //   .catch((err: any) => {
-    //     console.log(err);
-    //     this.spinLoad = false;
-    //   });
+    this.spinLoad = true;
+    this.orderService.getAllOrders(this.currentPage, this.limit).subscribe(
+      (res: any) => {
+        this.myOrdersData = res?.data?.data;
+        const total = res?.data?.total;
+        const limit = res?.data?.per_page;
+        this.pageCount = Math.ceil(total / limit);
+        this.spinLoad = false;
+      },
+      (err: any) => {
+        console.error('Error fetching orders', err);
+        this.spinLoad = false;
+      }
+    );
   }
 
   viewOrderHandler(item: any): void {

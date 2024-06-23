@@ -1,7 +1,7 @@
-// src/app/blog/blog.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { BlogsService } from '../../services/blogs.service';
 // import { AppState } from 'src/app/models/app-state.model';
 // import { GetNews } from '../../network/Network';
 // import { Blogs } from '../../redux/actions/AuthActions';
@@ -12,12 +12,14 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit {
-  vlogs: any;
   loading = true;
   pageCount: number;
   currentPage = 1;
+  blogs: any[] = [];
+  totalBlogs: number = 20;
+  limit = 10;
 
-  constructor(private store: Store<AppState>, private router: Router) {}
+  constructor(private blogsService: BlogsService, private router: Router) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -25,18 +27,16 @@ export class BlogComponent implements OnInit {
   }
 
   loadBlogs(): void {
-    // GetNews(this.currentPage).subscribe(
-    //   (res: any) => {
-    //     this.store.dispatch(Blogs({ blogs: res?.data?.data?.blogs }));
-    //     const total = res?.data?.data?.blogs?.total;
-    //     const limit = res?.data?.data?.blogs?.per_page;
-    //     this.pageCount = Math.ceil(total / limit);
-    //     this.loading = false;
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
+    this.blogsService.getBlogs().subscribe(
+      (data) => {
+        this.blogs = data;
+        this.pageCount = Math.ceil(this.totalBlogs / this.limit);
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching blogs', error);
+      }
+    );
   }
 
   handlePageClick(event: any): void {

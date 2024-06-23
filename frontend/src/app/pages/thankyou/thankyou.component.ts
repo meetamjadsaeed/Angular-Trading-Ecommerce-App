@@ -14,9 +14,9 @@ export class ThankyouComponent {
   orderStatus: string | undefined;
 
   constructor(private route: ActivatedRoute) {
-    // const state = this.route.snapshot?.state?.data;
-    // this.orderId = state?.id;
-    // this.orderAmount = state?.order_amount;
-    // this.orderStatus = state?.order_status;
+    const state = this.route.snapshot?.state?.data;
+    this.orderId = state?.id;
+    this.orderAmount = state?.order_amount;
+    this.orderStatus = state?.order_status;
   }
 }

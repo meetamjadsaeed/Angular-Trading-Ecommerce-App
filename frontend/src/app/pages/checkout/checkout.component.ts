@@ -1,39 +1,40 @@
 // src/app/checkout/checkout.component.ts
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-// import { AppState } from 'src/app/models/app-state.model';
-// import { verifyCouponApplicable } from '../../Utils/coupon';
+
+import { CartService } from '../../services/cart.service';
+import { verifyCouponApplicable } from '../../utils/coupon';
 
 @Component({
   selector: 'app-checkout',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  CartData: any = []; // Replace with actual data type
-  couponDetail: any = null; // Replace with actual data type
+  CartData: any[] = [];
+  couponDetail: any = null;
   subTotal: number = 0;
   couponDiscount: number | null = null;
 
-  // constructor(private store: Store<AppState>) { }
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    // this.store
-    //   .select((state) => state.CartReducer.cartData)
-    //   .subscribe((cartData: any) => {
-    //     this.CartData = cartData;
-    //     this.TotalAmount();
-    //   });
-    // this.store
-    //   .select((state) => state.CartReducer.coupon)
-    //   .subscribe((couponDetail: any) => {
-    //     this.couponDetail = couponDetail;
-    //     this.calculateCouponDiscount();
-    //   });
+    this.loadCartData();
+    this.loadCouponDetails();
+  }
+
+  loadCartData(): void {
+    this.cartService.getCartData().subscribe((data) => {
+      this.CartData = data;
+      this.TotalAmount();
+    });
+  }
+
+  loadCouponDetails(): void {
+    this.cartService.getCouponDetails().subscribe((data) => {
+      this.couponDetail = data;
+      this.calculateCouponDiscount();
+    });
   }
 
   TotalAmount(): void {
@@ -45,12 +46,19 @@ export class CheckoutComponent implements OnInit {
   }
 
   calculateCouponDiscount(): void {
-    // if (this.couponDetail) {
-    //   let checkCoupon = verifyCouponApplicable(this.couponDetail, this.subTotal);
-    //   if (checkCoupon.status) {
-    //     this.couponDiscount = checkCoupon.discount;
-    //   }
-    // }
+    if (this.couponDetail) {
+      let checkCoupon = verifyCouponApplicable(
+        this.couponDetail,
+        this.subTotal
+      );
+      if (checkCoupon.status) {
+        this.couponDiscount = checkCoupon.discount;
+      } else {
+        this.couponDiscount = null; // Coupon is not applicable
+      }
+    } else {
+      this.couponDiscount = null; // No coupon applied
+    }
   }
 
   get totalAfterDiscount(): number {

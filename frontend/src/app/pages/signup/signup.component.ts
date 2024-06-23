@@ -4,11 +4,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-// import { AppState } from '../../store/app.state';
-// import { sellerSignUp } from '../../store/actions/seller.actions';
-// import { signUp } from '../../store/actions/auth.actions';
-// import { ToastService } from '../../services/toast.service';
-// import * as Yup from 'yup';
+import { AppState } from '../../store/app.state';
+import { sellerSignUp } from '../../store/actions/seller.actions';
+import { signUp } from '../../store/actions/auth.actions';
+import { ToastService } from '../../services/toast.service';
+import * as Yup from 'yup';
 
 @Component({
   selector: 'app-signup',
@@ -62,17 +62,21 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   signInHandler(): void {
-    // if (this.signUpForm.invalid) {
-    //   this.toastService.error('Please fill out all required fields correctly.');
-    //   return;
-    // }
-    // this.btnLoading = true;
-    // const values = this.signUpForm.value;
-    // values['is_trader'] = this.profileTabs === 2; // Set is_trader based on selected tab
-    // this.store.dispatch(this.profileTabs === 3 ? new SellerSignUp(values) : new SignUp(values, () => {
-    //   this.btnLoading = false;
-    //   this.router.navigateByUrl('/');
-    // }));
+    if (this.signUpForm.invalid) {
+      this.toastService.error('Please fill out all required fields correctly.');
+      return;
+    }
+    this.btnLoading = true;
+    const values = this.signUpForm.value;
+    values['is_trader'] = this.profileTabs === 2; // Set is_trader based on selected tab
+    this.store.dispatch(
+      this.profileTabs === 3
+        ? new SellerSignUp(values)
+        : new SignUp(values, () => {
+            this.btnLoading = false;
+            this.router.navigateByUrl('/');
+          })
+    );
   }
 
   changeTabsFunction(tabNumber: number): void {

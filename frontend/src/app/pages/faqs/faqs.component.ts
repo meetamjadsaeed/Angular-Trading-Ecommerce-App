@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { GetFaqs } from '../../../network/Network';
+import { FaqService } from '../../services/faq.service'; // Replace with your faq service
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-faqs',
@@ -13,18 +13,27 @@ export class FaqsComponent implements OnInit {
   faqData: any[] = [];
   spinLoad: boolean = false;
 
-  constructor() {}
+  constructor(private faqService: FaqService) {}
 
   ngOnInit(): void {
+    this.loadFaqs();
+  }
+
+  loadFaqs(): void {
     this.spinLoad = true;
-    // GetFaqs()
-    //   .then((res) => {
-    //     this.faqData = res?.data?.data?.faqs;
-    //     this.spinLoad = false;
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     this.spinLoad = false;
-    //   });
+    this.faqService
+      .getFaqs()
+      .pipe(
+        catchError((error) => {
+          console.error('Error loading FAQs:', error);
+          return []; // Return empty array or handle error as needed
+        }),
+        finalize(() => {
+          this.spinLoad = false;
+        })
+      )
+      .subscribe((data) => {
+        this.faqData = data;
+      });
   }
 }

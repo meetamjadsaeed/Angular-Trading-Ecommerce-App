@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-// import { SingleBlog } from '../../../network/Network';
-// import { singleBlog } from '../../../redux/actions/AuthActions';
-// import { AppState } from '../../../redux/app.state';
+import { BlogDetailService } from '../../services/blog-detail.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -13,26 +8,27 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./blog-detail.component.css'],
 })
 export class BlogDetailsComponent implements OnInit {
-  Singleblog$: Observable<any>;
+  Singleblog: any;
   load: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router // private store: Store<AppState>
-  ) {
-    // this.Singleblog$ = this.store.select(state => state.AuthReducer.Singleblog);
-  }
+    private router: Router,
+    private blogService: BlogDetailService
+  ) {}
 
   ngOnInit(): void {
-    // const id = this.route.snapshot.paramMap.get('id');
-    // SingleBlog(id).then(res => {
-    //   this.store.dispatch(singleBlog(res?.data?.data));
-    // }).catch(err => {
-    //   console.log(err);
-    // });
-    // setTimeout(() => {
-    //   this.load = false;
-    // }, 2000);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.blogService.getBlogDetail(id).subscribe(
+      (res) => {
+        this.Singleblog = res.data; // Adjust as per your API response structure
+        this.load = false;
+      },
+      (err) => {
+        console.error(err);
+        this.load = false;
+      }
+    );
   }
 
   navigateBack() {

@@ -1,73 +1,65 @@
-// signin.component.ts
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-// import { AppState } from '../../store/app.state';
-// import { login, sellerLogin } from '../../store/actions/auth.actions';
-// import { Adsapi } from '../../store/actions/cart.actions';
-// import { GetAds } from '../../network/Network';
-// import { ToastService } from '../../services/toast.service';
+import { ToastService } from '../../services/toast.service';
+import { GetAds } from '../../network/Network';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
 })
-export class SigninComponent implements OnInit, OnDestroy {
+export class SigninComponent {
   email = '';
   password = '';
   loading = false;
   sellerCheck = false;
-  // adsSubscription: Subscription | undefined;
+  adsData: any = null; // Variable to store fetched ads data
 
-  constructor(
-    private router: Router // private store: Store<AppState>,
-  ) // private toastService: ToastService
-  {}
+  constructor(private router: Router, private toastService: ToastService) {}
 
   ngOnInit(): void {
-    // Handle initialization tasks if needed
-    // For example, fetching ads
     this.fetchAds();
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from subscriptions if any
-    // if (this.adsSubscription) {
-    //   this.adsSubscription.unsubscribe();
-    // }
-  }
-
   fetchAds(): void {
-    // GetAds()
-    //   .then(res => {
-    //     this.store.dispatch(new Adsapi(res?.data?.data?.ads));
-    //   })
-    //   .catch(err => {
-    //     console.error('Error fetching ads:', err);
-    //   });
+    GetAds()
+      .then((res) => {
+        this.adsData = res?.data?.data?.ads; // Save ads data in the variable
+        this.toastService.success('Ads fetched successfully');
+      })
+      .catch((err) => {
+        console.error('Error fetching ads:', err);
+        this.toastService.error('Failed to fetch ads');
+      });
   }
 
   signInHandler(): void {
-    // if (!this.email || !this.password) {
-    //   this.toastService.error('Please Enter All Fields');
-    //   return;
-    // }
+    if (!this.email || !this.password) {
+      this.toastService.error('Please Enter All Fields');
+      return;
+    }
+
     this.loading = true;
     const data = {
       email: this.email,
       password: this.password,
     };
-    // setTimeout(() => {
-    //   this.loading = false;
-    //   if (this.sellerCheck) {
-    //     this.store.dispatch(new SellerLogin(data));
-    //   } else {
-    //     this.store.dispatch(new Login(data));
-    //   }
-    // }, 600);
+
+    // Simulating async login process
+    setTimeout(() => {
+      this.loading = false;
+      if (this.sellerCheck) {
+        // Simulate seller login logic
+        this.toastService.success('Seller login successful');
+        console.log('Seller login:', data);
+      } else {
+        // Simulate regular login logic
+        this.toastService.success('User login successful');
+        console.log('User login:', data);
+      }
+      // Example of navigating to another route
+      this.router.navigateByUrl('/dashboard');
+    }, 600);
   }
 
   navigateTo(url: string): void {

@@ -1,59 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-// import { ClearCart, CouponApplied } from '../../store/actions/cart.actions';
-// import { ApplyCoupons } from '../../services/network.service';
-// import { ToastService } from '../../services/toast.service';
-// import { verifyCouponApplicable } from '../../utils/coupon';
-// import { CartSectionComponent } from '../cart-section/cart-section.component';
+import { CartService } from '../../services/cart.service';
+import { ToastService } from '../../services/toast.service';
+import { verifyCouponApplicable } from '../../utils/coupon';
 
 @Component({
   selector: 'app-product-cart',
-  standalone: true,
   templateUrl: './productcart.component.html',
   styleUrls: ['./productcart.component.css'],
 })
 export class ProductCartComponent implements OnInit {
-  cartData$: Observable<any>;
-  couponDetail$: Observable<any>;
-  token$: Observable<string>;
-  isLogin$: Observable<boolean>;
+  cartData: any[] = [];
+  couponDetail: any;
+  token: string;
+  isLogin: boolean;
   subTotal: number = 0;
   coupons: string = '';
   loading: boolean = false;
   couponDiscount: number | null = null;
-  cartData: any[] = [];
-  quantity: number = 1;
 
   constructor(
-    private store: Store<any>,
-    private router: Router // private networkService: ApplyCoupons,
-  ) // private toastService: ToastService
-  {
-    this.cartData$ = this.store.pipe(select((state) => state.cart.cartData));
-    this.couponDetail$ = this.store.pipe(select((state) => state.cart.coupon));
-    this.token$ = this.store.pipe(select((state) => state.auth.token));
-    this.isLogin$ = this.store.pipe(select((state) => state.auth.isLogin));
-  }
+    private router: Router,
+    private cartService: CartService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit() {
-    this.cartData$.subscribe((cartData) => {
-      this.cartData = cartData;
-      this.calculateTotalAmount();
-      if (this.cartData.length === 0) {
-        this.router.navigate(['/']);
-      }
-    });
+    this.loadCartData();
+  }
 
-    // this.couponDetail$.subscribe(couponDetail => {
-    //   if (couponDetail) {
-    //     const checkCoupon = verifyCouponApplicable(couponDetail, this.subTotal);
-    //     if (checkCoupon.status) {
-    //       this.couponDiscount = checkCoupon.discount;
-    //     }
-    //   }
-    // });
+  loadCartData() {
+    this.cartService.getCartData().subscribe(
+      (cartData) => {
+        this.cartData = cartData;
+        this.calculateTotalAmount();
+        if (this.cartData.length === 0) {
+          this.router.navigate(['/']);
+        }
+      },
+      (error) => {
+        console.error('Error loading cart data', error);
+      }
+    );
   }
 
   calculateTotalAmount() {
@@ -64,30 +52,45 @@ export class ProductCartComponent implements OnInit {
   }
 
   applyCouponsHandler(event: Event) {
-    // event.preventDefault();
-    // this.loading = true;
-    // this.networkService.applyCoupons(this.coupons).subscribe(
-    //   res => {
-    //     this.loading = false;
-    //     const checkCoupon = verifyCouponApplicable(res.data.coupon, this.subTotal);
-    //     if (checkCoupon.status) {
-    //       this.toastService.success('Successfully Applied');
-    //       this.couponDiscount = checkCoupon.discount;
-    //       this.store.dispatch(CouponApplied({ coupon: res.data.coupon }));
-    //     } else {
-    //       this.store.dispatch(CouponApplied({}));
-    //       this.toastService.error(checkCoupon.message);
-    //     }
-    //   },
-    //   err => {
-    //     this.loading = false;
-    //     this.toastService.error(err.response.data.message);
-    //   }
-    // );
+    event.preventDefault();
+    this.loading = true;
+    this.cartService.applyCoupon(this.coupons).subscribe(
+      (res) => {
+        this.loading = false;
+        const checkCoupon = verifyCouponApplicable(
+          res.data.coupon,
+          this.subTotal
+        );
+        if (checkCoupon.status) {
+          this.toastService.success('Successfully Applied');
+          this.couponDiscount = checkCoupon.discount;
+          this.couponDetail = res.data.coupon;
+        } else {
+          this.toastService.error(checkCoupon.message);
+        }
+      },
+      (err) => {
+        this.loading = false;
+        console.error('Error applying coupon', err);
+        this.toastService.error(err.error.message || 'An error occurred');
+      }
+    );
   }
 
   clearCart() {
-    // this.store.dispatch(ClearCart());
+    this.cartService.clearCart().subscribe(
+      () => {
+        this.cartData = [];
+        this.subTotal = 0;
+        this.couponDetail = null;
+        this.couponDiscount = null;
+        this.toastService.success('Cart cleared successfully');
+      },
+      (error) => {
+        console.error('Error clearing cart', error);
+        this.toastService.error(error.error.message || 'An error occurred');
+      }
+    );
   }
 
   proceedToCheckout() {
@@ -100,7 +103,7 @@ export class ProductCartComponent implements OnInit {
             this.couponDiscount != null
               ? (this.subTotal - this.couponDiscount).toFixed(2)
               : this.subTotal.toFixed(2),
-          couponData: this.couponDetail$,
+          couponData: this.couponDetail,
         },
       },
     });
