@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SignUpFormModel } from './sign-up.model';
+import { SignUpFormModel } from '../../../models/sign-up.model';
 import { PATH } from '../../models/routes.model';
 import { AuthService } from '../auth.service';
 import { mustMatch } from '../../helpers/password-validators';

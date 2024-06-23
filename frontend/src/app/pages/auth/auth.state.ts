@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { AuthStateModel } from './auth-state.model';
+import { AuthStateModel } from '../../models/auth-state.model';
 import { Injectable } from '@angular/core';
 import { Login, Logout, Register } from './auth.actions';
 import { catchError } from 'rxjs/operators';
