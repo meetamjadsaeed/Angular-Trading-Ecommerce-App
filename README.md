@@ -1,6 +1,6 @@
 # E-Commerce Web Application
 
-This project is an Angular-based e-commerce web application designed to cover all the basics to advanced concepts of Angular, including RxJS, Redux, and more. The project is a work in progress, and we will continue to add new features and fix bugs over time.
+This project is an Angular-based e-commerce web application designed to cover all the basics to advanced concepts of Angular, including RxJS, Redux, and more. The project is a work in progress, and I will continue to add new features and fix bugs over time.
 
 ## Table of Contents
 
