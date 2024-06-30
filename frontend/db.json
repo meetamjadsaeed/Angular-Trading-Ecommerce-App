@@ -21,21 +21,21 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
-      "description": "Description of Product 1",
-      "price": 100
+      "discount": 10,
+      "name": "Top Product 1",
+      "rating": 4,
+      "after_discount_price": 100,
+      "unit_price": 200,
+      "is_trade": 1
     },
     {
       "id": 2,
-      "name": "Product 2",
-      "description": "Description of Product 2",
-      "price": 150
-    },
-    {
-      "id": 3,
-      "name": "Product 3",
-      "description": "Description of Product 3",
-      "price": 120
+      "discount": 5,
+      "name": "Top Product 2",
+      "rating": 3,
+      "after_discount_price": 50,
+      "unit_price": 100,
+      "is_trade": 0
     }
   ],
   "hot-deals": [
@@ -97,7 +97,12 @@
   "blogs": [
     { "id": 1, "title": "Blog Post 1", "content": "This is a blog post" }
   ],
-  "blog": { "id": 1, "title": "Blog Post 1", "content": "This is a blog post" },
+  "blog": {
+    "id": 1,
+    "title": "Blog Post 1",
+    "content": "<h1>This is a blog post</h2>",
+    "created_at": "Tuesday 15th August"
+  },
   "country": [{ "id": 1, "name": "USA" }],
   "forgot-password": {
     "status": "success",
@@ -114,12 +119,88 @@
   "top-products": [{ "id": 1, "name": "Top Product 1" }],
   "trade-products": [{ "id": 1, "productId": 1, "tradeValue": 100 }],
   "details": { "id": 1, "detail": "Product detail" },
+  "currentProduct": {
+    "id": 1,
+    "name": "",
+    "description": "",
+    "unit": "",
+    "category_id": "",
+    "sub_category_id": "",
+    "brand_id": 0,
+    "price": 0,
+    "is_trade": false,
+    "trade_qty": 1,
+    "colors_active": false,
+    "colors": [],
+    "attributes": [],
+    "images": [
+      {
+        "alt": "",
+        "image": "",
+        "status": "add"
+      }
+    ],
+    "image": [
+      {
+        "alt": "",
+        "image": "",
+        "status": "add"
+      }
+    ],
+    "unit_price": 0,
+    "purchase_price": 0,
+    "tax": 0,
+    "tax_type": "",
+    "discount": 0,
+    "discount_type": "",
+    "current_stock": 0,
+    "meta_title": "",
+    "meta_description": "",
+    "meta_image": [],
+    "video_link": "",
+    "variations": [],
+    "choices": []
+  },
   "show": { "id": 1, "detail": "Show detail" },
-  "get_pages": [{ "id": 1, "type": "page", "content": "Page content" }],
+  "get_pages": [
+    { "id": 1, "type": "page", "content": "Page content" },
+    {
+      "id": 2,
+      "type": "cookie_policy",
+      "value": "<h1>Another page content</h1>"
+    },
+    {
+      "id": 3,
+      "type": "privacy_policy",
+      "value": "<h1>privacy_policy</h1>"
+    },
+    {
+      "id": 4,
+      "type": "refund_policy",
+      "value": "<h1>refund_policy</h1>"
+    },
+    {
+      "id": 5,
+      "type": "terms_and_conditions",
+      "value": "<h1>terms_and_conditions</h1>"
+    }
+  ],
   "chats": [{ "id": 1, "message": "Hello", "seen": false }],
   "seen": { "status": "success", "message": "Marked as seen" },
   "seller": { "id": 1, "name": "Seller 1" },
-  "profile": { "id": 1, "name": "Seller Profile" },
+  "profile": {
+    "id": 1,
+    "profile_url": "https://example.com/profile.jpg",
+    "role": "seller",
+    "f_name": "John",
+    "l_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "1234567890",
+    "street_address": "123 Example Street",
+    "city": "Example City",
+    "state": "Example State",
+    "gender": "male"
+  },
   "profile/update": { "status": "success", "message": "Profile updated" },
   "profile/change-password": {
     "status": "success",
@@ -145,6 +226,16 @@
     "status": "success",
     "message": "Notification marked as read"
   },
-  "seller/orders": [{ "id": 1, "orderId": 1, "status": "pending" }],
+  "seller/orders": [
+    {
+      "id": 1,
+      "orderId": 1,
+      "order_status": "pending",
+      "order_amount": 100,
+      "discount_amount": 10
+    }
+  ],
+  "total": 30,
+  "limit": 10,
   "seller/orders/show": { "id": 1, "orderId": 1, "status": "pending" }
 }

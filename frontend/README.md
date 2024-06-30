@@ -1,63 +1,122 @@
-# Boilerplate: Angular 17 Web client application
+# E-Commerce Web Application
 
-<!-- https://github.com/vallettasoftware/boilerplate-angular?tab=readme-ov-file -->
+This project is an Angular-based e-commerce web application designed to cover all the basics to advanced concepts of Angular, including RxJS, Redux, and more. The project is a work in progress, and we will continue to add new features and fix bugs over time.
 
-A base functional Angular project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+## Table of Contents
 
-_Change `PromoBoilerplateAngular` to your project name._
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Setup and Installation](#setup-and-installation)
+- [Development Server](#development-server)
+- [Technologies Used](#technologies-used)
+- [Current Functionalities](#current-functionalities)
+- [Future Enhancements](#future-enhancements)
+- [Boilerplate](#boilerplate)
 
-## Development server
+## Project Overview
+
+This project aims to create a robust e-commerce platform using Angular. It includes various functionalities typical of e-commerce applications, such as authentication, product management, wishlist, order tracking, and more. The application is built using a boilerplate that provides a strong foundation with pre-configured environment settings, state management, and other essential features.
+
+## Features
+
+- Authentication (Register, Login)
+- Product Management (CRUD operations)
+- Wishlist Management
+- Order Tracking
+- User Profile Management
+- Category and Brand Management
+- Discount and Coupon Management
+- Review and Reply System
+- Newsletter Subscription
+- Contact Us Form
+- FAQ Management
+- Search Functionality
+- Banner and Ad Management
+- Blog Management
+
+## Setup and Installation
+
+To set up and run this project locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/e-commerce-app.git
+   cd e-commerce-app
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+## Development Server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Features Summary:
+## Technologies Used
 
-- Base ctructure for starting project on Angular 17
-- Configured environment
-- Authorization module with base auth forms, service, guards and state
-- State management by [NGXS](https://www.ngxs.io/)
-- Internalization by [ngx-translate](https://github.com/ngx-translate/core)
-- Testing by Karma
+- **Angular 17**: The latest version of Angular for building scalable web applications.
+- **NGXS**: State management library modeled after the CQRS pattern.
+- **RxJS**: Reactive programming library for managing asynchronous data streams.
+- **ngx-translate**: Library for easy internalization and localization.
 
-## Angular 17
+## Current Functionalities
 
-The new Angular 17 version was released on November 8, 2023.
-And the [Valletta Software](https://www.vallettasoftware.com/) team is already ready to develop and implement solutions for your business based on this modern stack.
+### Authentication
 
-## Base ctructure
+- **Auth**: { "status": "success", "message": "Authenticated" }
+- **Register**: { "status": "success", "message": "User registered successfully" }
+- **Login**: { "status": "success", "message": "User logged in successfully" }
 
-We prepared base structure for new project.
-It has components and services what used in every real project.
-This boilerplate will help you get start new project faster.
+### Product Management
 
-## Authorization module
+- **Products**: CRUD operations on products, including discounts, ratings, and trade options.
 
-Auth module has base logic and structure
+### Wishlist Management
 
-- AuthModule defines all auth entities
-- AuthService provides data from store, methods for components and dispathes auth actions
-- AuthApiServices makes requests to Auth endpoint
-- AuthState store data about user's authorization
-- AuthGuard provides CanActivate functions for security implementation
-- SignIn and SignUp components have forms for login and registration
+- **Wish List**: Manage user's wish list items.
 
-## State management
+### Order Tracking
 
-Included state managment by NGXS package. NGXS is modeled after the CQRS pattern popularly implemented in libraries like Redux and NgRx but reduces boilerplate by using modern TypeScript features such as classes and decorators.
-Also we configured following really useful plugins:
+- **Order**: Track order status and details.
 
-- [Logger](https://www.ngxs.io/plugins/logger) outputs state and it's changes
-- [Storage](https://www.ngxs.io/plugins/storage) saves selected parts of store between app reloading. It uses localStorage and restores previous state
-- [Router](https://www.ngxs.io/plugins/router) allows to navigate by actions
+### User Profile Management
 
-AuthState can be used as example (State, Actions, Selectors) for your new states.
+- **Profile**: Update user profile information, change password.
 
-## Internalization
+### Additional Features
 
-Native internalization in Angular very cumbersome and difficult.
-Internalization with [ngx-translate](https://github.com/ngx-translate/core) is so easy.
-Just create JSON dictionary `/assets/i18n/[lang].json` for each language and output it with translation pipe: `{{ 'MULTI-LEVEL.KEY' | translate }}`.
+- **Categories**: Manage product categories.
+- **Colors**: Manage product colors.
+- **Hot Deals**: Special discounts on selected products.
+- **Related Products**: Display related products.
+- **Reviews and Replies**: User reviews and admin replies.
+- **Contact Us**: Form for users to contact support.
+- **Newsletter**: Subscription management.
+- **FAQs**: Frequently asked questions.
+- **Search**: Product search functionality.
+- **Banners and Ads**: Manage promotional banners and advertisements.
+- **Blogs**: Manage blog posts.
 
-## Testing
+## Future Enhancements
 
-Karma is available in the boilerplate
+- Enhanced admin dashboard for managing all aspects of the e-commerce platform.
+- Advanced analytics and reporting features.
+- Integration with payment gateways.
+- Improved UI/UX with responsive design.
+- More customization options for users and admins.
+
+## Boilerplate
+
+This project uses a boilerplate Angular 17 application as its foundation.
+
+### Features Summary:
+
+- **Base Structure**: Pre-configured environment for starting projects on Angular 17.
+- **Authorization Module**: Base auth forms, services, guards, and state management.
+- **State Management**: Managed by NGXS, with plugins for logging, storage, and router integration.
+- **Internalization**: Easy internalization using ngx-translate.
+- **Testing**: Pre-configured with Karma for unit testing.
+
+For more details, visit the [Boilerplate Repository](https://github.com/vallettasoftware/boilerplate-angular?tab=readme-ov-file).
