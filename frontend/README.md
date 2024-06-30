@@ -8,6 +8,7 @@ This project is an Angular-based e-commerce web application designed to cover al
 - [Features](#features)
 - [Setup and Installation](#setup-and-installation)
 - [Development Server](#development-server)
+- [Backend Setup](#backend-setup)
 - [Technologies Used](#technologies-used)
 - [Current Functionalities](#current-functionalities)
 - [Future Enhancements](#future-enhancements)
@@ -41,8 +42,8 @@ To set up and run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/e-commerce-app.git
-   cd e-commerce-app
+   git clone https://github.com/meetamjadsaeed/Angular-Trading-Ecommerce-App.git
+   cd Angular-Trading-Ecommerce-App
    ```
 
 2. Install the dependencies:
@@ -54,12 +55,30 @@ To set up and run this project locally, follow these steps:
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+## Backend Setup
+
+For the backend, we are using `json-server`. This allows you to set up a mock backend quickly without the need for a full-fledged server.
+
+1. Install `json-server` globally:
+
+   ```bash
+   npm install -g json-server
+   ```
+
+2. Run `json-server` with the provided `db.json` file:
+   ```bash
+   npx json-server db.json
+   ```
+
+Your backend will be ready and running at `http://localhost:3000/`.
+
 ## Technologies Used
 
 - **Angular 17**: The latest version of Angular for building scalable web applications.
 - **NGXS**: State management library modeled after the CQRS pattern.
 - **RxJS**: Reactive programming library for managing asynchronous data streams.
 - **ngx-translate**: Library for easy internalization and localization.
+- **json-server**: Tool to create a full fake REST API with zero coding.
 
 ## Current Functionalities
 
