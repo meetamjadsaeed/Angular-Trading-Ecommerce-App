@@ -20,7 +20,7 @@ This project aims to create a robust e-commerce platform using Angular. It inclu
 
 ## Features
 
-- Authentication (Register, Login)
+- Authentication
 - Product Management (CRUD operations)
 - Wishlist Management
 - Order Tracking
@@ -34,6 +34,8 @@ This project aims to create a robust e-commerce platform using Angular. It inclu
 - Search Functionality
 - Banner and Ad Management
 - Blog Management
+- Integration with payment gateways.
+- different users (seller, normal user, admin)
 
 ## Setup and Installation
 
@@ -122,7 +124,6 @@ Your backend will be ready and running at `http://localhost:3000/`.
 
 - Enhanced admin dashboard for managing all aspects of the e-commerce platform.
 - Advanced analytics and reporting features.
-- Integration with payment gateways.
 - Improved UI/UX with responsive design.
 - More customization options for users and admins.
 
